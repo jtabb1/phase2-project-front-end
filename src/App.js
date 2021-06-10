@@ -81,6 +81,15 @@ function App() {
       .ticks( d3.utcMonth.every(2) ) )
     ;
 
+    // display mouse position
+    // var format_with_days = d3.utcFormat( "%m/%d/%Y" );
+    // var txt = svg.append("text").attr("x",100).attr("y",50)   //<8>
+    //     .attr("font-family","sans-serif").attr("font-size",14);
+    // svg.on( "mousemove", function() {                               
+    //     var pt = d3.mouse( svg.node() )
+    //     txt.text( format_with_days( scT.invert( pt[0] ) ) + " | " +  //<9>
+    //               d3.format( ">2d" )( scY.invert(pt[1]) ) );  //<10>
+    // } );    
   }, [data0]);
   
   return (
