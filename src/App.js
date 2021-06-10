@@ -14,7 +14,8 @@ function App() {
     let g01aW = +g01aWidthScaling * vptW;
     let g01aHeightScaling = "0.4";
     let g01aH = +g01aHeightScaling * vptH;
-    // let g01aM = 40;
+    let g01aM = 40;
+    console.log(g01aW,g01aH);
 
     var parse = d3.utcParse( "%m/%d/%Y" );
     var format = d3.utcFormat( "%m/%Y" );
