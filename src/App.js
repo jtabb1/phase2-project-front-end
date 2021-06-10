@@ -1,33 +1,20 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './App.css';
-import initData from './initialData.js';
 import { select } from "d3";
 import * as d3 from "d3";
+import startingData from "./data/initial_data";
 
 function App() {
 
   var parse = d3.utcParse( "%m/%d/%Y" );
 
-  const data00 = initData.map( o => {
+  const data00 = startingData.ds00.map( o => {
     return (
       { ts: parse(o.ts), val: o.val }
     );
   });
-  console.log(data00);
 
-  const [data0, setData] = useState( data00
-    // [ { ts: parse( '1/1/2021' ), val: 951.6875 },
-    //   { ts: new Date( '1/11/2021' ), val: 909.875 },
-    //   { ts: parse( '2/1/2021' ), val: 959.625 },
-    //   { ts: new Date( '2/11/2021' ), val: 974.25 },
-    //   { ts: new Date( '3/1/2021' ), val: 980.9375 },
-    //   { ts: new Date( '3/11/2021' ), val: 951.25 },
-    //   { ts: new Date( '4/1/2021' ), val: 909.0625 },
-    //   { ts: new Date( '5/1/2021' ), val: 997.9375 },
-    //   { ts: new Date( '6/1/2021' ), val: 988.125 },
-    //   { ts: new Date( '7/1/2021' ), val: 936.6875 },
-    // ]
-  );
+  const [data0, setData] = useState( data00 );
   const svgRef = useRef();
 
   useEffect(() => {
