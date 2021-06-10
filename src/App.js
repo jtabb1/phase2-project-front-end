@@ -3,8 +3,10 @@ import './App.css';
 import { select } from "d3";
 import * as d3 from "d3";
 
+console.log('hello global');
+
 function App() {
-  const [data, setData] = useState([25, 30, 45, 60, 20]);
+  const [data, setData] = useState([20, 25, 30, 45, 60]);
   const svgRef = useRef();
   console.log('hello');
 
@@ -43,7 +45,7 @@ function App() {
       <button onClick={() => setData(data.map(value => value + 5))}>
         Update data 
       </button>
-      <button onClick={() => setData(data.filter(value => value < 35))}>
+      <button onClick={() => setData(data.filter(value => value < 25))}>
         Filter data 
       </button>
     </React.Fragment>
