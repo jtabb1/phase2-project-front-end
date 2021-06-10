@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './App.css';
 import { select } from "d3";
-import * as d3 from "d3";
+// import * as d3 from "d3";
 
 function App() {
   const [data, setData] = useState([25, 30, 45, 60, 20]);
@@ -14,17 +14,10 @@ function App() {
     let g01aW = +g01aWidthScaling * vptW;
     let g01aHeightScaling = "0.4";
     let g01aH = +g01aHeightScaling * vptH;
-    // let g01aM = 40;
-
-    var parse = d3.utcParse( "%m/%d/%Y" );
-    var format = d3.utcFormat( "%m/%Y" );
-    var format_with_days = d3.utcFormat( "%m/%d/%Y" );
+    let g01aM = 40;
 
     const svg = select(svgRef.current);
     svg
-      .attr( "cursor","crosshair" )
-      .attr( "width",g01aW )
-      .attr( "height",g01aH )
       .selectAll("circle")
       .data(data)
       .join("circle")
