@@ -6,6 +6,7 @@ import * as d3 from "d3";
 function App() {
   const [data, setData] = useState([25, 30, 45, 60, 20]);
   const svgRef = useRef();
+  console.log('hello');
 
   useEffect(() => {
     let vptW = window.innerWidth;
