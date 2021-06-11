@@ -14,7 +14,7 @@ function App() {
 
   //Future Feature: Set state to local data if backend server 
   //  is unavailable, and notify the user if this is the case.
-  //  Would be: const [data0, setData] = useState( data00 );
+  //  Would be: const [data0, setData] = useState( data00 );.
   const [data0, setData] = useState( [] );
   const svgRef = useRef();
 
