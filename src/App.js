@@ -15,10 +15,13 @@ function App() {
   // const [dataSeries, setDataSeries] = useState('qualityData');
   const [data, setData] = useState([]);
 
+  const localApi = "http://localhost:4000/data";
+  const externalApi = "https://glorify-the-supreme-god-67d35a.herokuapp.com/data";
+
   // console.log('hello');
   useEffect(() => {
     fetch(
-      `http://localhost:4000/data`
+      `${externalApi}`
     )
     .then((r) => r.json())
     .then((j)=>{
