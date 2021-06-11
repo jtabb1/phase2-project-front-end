@@ -13,9 +13,9 @@ import NavBar from "./NavBar";
 function App() {
 
   // const [dataSeries, setDataSeries] = useState('qualityData');
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
-  const localApi = "http://localhost:4000/data";
+  // const localApi = "http://localhost:4000/data";
   const externalApi = "https://glorify-the-supreme-god-67d35a.herokuapp.com/data";
 
   // console.log('hello');
@@ -35,21 +35,25 @@ function App() {
   return (
     <div>
       <NavBar />
-      <Switch>
 
-        <Route exact path="/quality">
-          <QualityGraph data={data}/>
-        </Route>
+      {data !== null ? (
+        <Switch>
 
-        <Route exact path="/quantity">
-          <QuantityGraph data={data}/>
-        </Route>
+          <Route exact path="/quality">
+            <QualityGraph data={data}/>
+          </Route>
 
-        <Route exact path="/">
-          <QualityGraph data={data}/>
-        </Route>
+          <Route exact path="/quantity">
+            <QuantityGraph data={data}/>
+          </Route>
 
-      </Switch>
+          <Route exact path="/">
+            <QualityGraph data={data}/>
+          </Route>
+
+        </Switch> ) : (
+        <div><br /><p>loading ...</p></div>
+      )}
     </div>
   );
 
