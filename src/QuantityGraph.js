@@ -1,28 +1,34 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
+import SubmitLayer from './SubmitLayer';
+import DataList from './DataList';
 
+const dataSeriesX = 'quantityData';
+const strokeColor = "green";
 const Api =
 // "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 "http://localhost:4000";
 
-function QualityGraph() {
+function QuantityGraph({ dataSeries, setDataSeries}) {
+
+  setDataSeries(dataSeriesX);
 
   let g01aWidthScaling = "0.9";
   let g01aHeightScaling = "0.4";
   let g01aM = 40;
   
-  const dataSeries = 'quantityData';
-  const strokeColor = "green";
-  
   // eslint-disable-next-line
   const [data, setData] = useState(null);
   const svgRef = useRef();
 
+  function onDelete () {};
+  function onModify () {};
+
   useEffect( () => {
 
     fetch(
-      `${Api}/${dataSeries}`
+      `${Api}/${dataSeriesX}`
     )
     .then((r) => r.json())
     .then((data0)=>{
@@ -92,7 +98,19 @@ function QualityGraph() {
     });
   }, []);
 
-  return (<svg ref={svgRef}></svg>);
+  return (
+    <div>
+      <svg ref={svgRef}></svg>
+      <SubmitLayer />
+      {data !== null ? 
+        <DataList 
+          data={data}
+          dataSeries={dataSeries}
+          onDelete={onDelete}
+          onModify={onModify}
+        /> :
+        <p>loading ... </p>}
+    </div>);
 }
 
-export default QualityGraph;
+export default QuantityGraph;
