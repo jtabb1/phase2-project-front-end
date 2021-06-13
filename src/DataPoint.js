@@ -4,28 +4,64 @@ const Api =
 // "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 "http://localhost:4000";
 
-function DataPoint({datum, dataSeries, onModify, onDelete}) {
+function DataPoint({
+  data, 
+  datum, 
+  dataSeries, 
+  onModify, 
+  onDelete,
+  setData}) {
   
   const { id, ts, val } = datum;
 
   // Handle a change here
   function handleSubmit(evt) {
+    evt.preventDefault();
 
+    const tgtId = parseInt(evt.target.id,10);
+    const updTs = evt.target.name;
+    console.log(evt);
+    console.log(tgtId);
+    console.log(updTs);
+    const input = document.getElementById(`input-${tgtId}`);
+    const testVal = input.value;
+    if (testVal.length === 0) return;
+    const updVal = parseFloat(testVal);
+
+    const updDatum = {
+      id: tgtId,
+      ts: updTs,
+      val: updVal
+    }
+    fetch(`${Api}/${dataSeries}/${tgtId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updDatum),
+    })
+      .then((r) => r.json())
+      .then(() => {
+        const updatedData = data.map((dm) => (
+          dm.id === tgtId ? updDatum : dm
+        ));
+        setData(()=>(updatedData));
+        onModify(updDatum);
+      });
   }
 
-  function handleInputChange(evt) {
-
-  }
-
-  function handleDelete(vt) {
+  function handleDelete() {
     fetch(`${Api}/${dataSeries}/${id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
       .then(() => {
+        const updatedData = data.filter((dm) => dm.id !== id);
+        setData(()=>(updatedData));
         onDelete(id);
       });
   }
+  
 
   return (
   <tr>
@@ -39,16 +75,18 @@ function DataPoint({datum, dataSeries, onModify, onDelete}) {
         </button>
       </td>
       <td>
-        <form onSubmit={handleSubmit}>
+        <form id={id} name={ts} onSubmit={handleSubmit}>
           <input
+            id={`input-${id}`}
             type="text"
             className="form-control"
-            placeholder="Input Value"
+            placeholder={val}
             name="val"
-            value={val}
-            onChange={handleInputChange}
+            defaultValue={val}
           />
-          <button type="submit" className="btn btn-success">
+          <button type="submit" 
+           className="btn btn-success"
+          >
             Change
           </button>
         </form>
