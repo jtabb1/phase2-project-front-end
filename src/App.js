@@ -12,8 +12,6 @@ const Api =
 
 function App() {
 
-  const [dataSeries, setDataSeries] = useState('qualityData');
-  // const [data, setData] = useState(null);
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
 
@@ -24,19 +22,20 @@ function App() {
     )
     .then((r) => r.json())
     .then((da)=>{
-      setQualityData(da);
+      setQualityData(
+        da.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts))
+      );
     });
 
     fetch(
-      `${Api}/${'qualityData'}`
+      `${Api}/${'quantityData'}`
     )
     .then((r) => r.json())
     .then((da)=>{
-      setQualityData(da);
+      setQuantityData(
+        da.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts))
+      );
     });
-    
-    // setData(qualityData);
-
   }, []);
 
   return qualityData !== null ?  (
@@ -47,19 +46,16 @@ function App() {
 
           <Route exact path="/quality">
             <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
-              dataSeries={dataSeries} setDataSeries={setDataSeries}
             />
           </Route>
 
           <Route exact path="/quantity">
             <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
-              dataSeries={dataSeries} setDataSeries={setDataSeries}
             />
           </Route>
 
           <Route exact path="/">
             <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
-             dataSeries={dataSeries} setDataSeries={setDataSeries}
             />
           </Route>
 

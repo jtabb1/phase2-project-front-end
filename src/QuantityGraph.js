@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
-import SubmitLayer from './SubmitLayer';
+// import SubmitLayer from './SubmitLayer';
 import DataList from './DataList';
 
 const dataSeriesX = 'quantityData';
@@ -101,7 +101,7 @@ function QuantityGraph({ dataSeries, setDataSeries}) {
   return (
     <div>
       <svg ref={svgRef}></svg>
-      <SubmitLayer />
+      {/* <SubmitLayer /> */}
       {data !== null ? 
         <DataList 
           data={data}

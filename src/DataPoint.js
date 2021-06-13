@@ -14,15 +14,11 @@ function DataPoint({
   
   const { id, ts, val } = datum;
 
-  // Handle a change here
   function handleSubmit(evt) {
     evt.preventDefault();
 
     const tgtId = parseInt(evt.target.id,10);
     const updTs = evt.target.name;
-    console.log(evt);
-    console.log(tgtId);
-    console.log(updTs);
     const input = document.getElementById(`input-${tgtId}`);
     const testVal = input.value;
     if (testVal.length === 0) return;
@@ -40,29 +36,28 @@ function DataPoint({
       },
       body: JSON.stringify(updDatum),
     })
-      .then((r) => r.json())
-      .then(() => {
-        const updatedData = data.map((dm) => (
-          dm.id === tgtId ? updDatum : dm
-        ));
-        setData(()=>(updatedData));
-        onModify(updDatum);
-      });
+    .then((r) => r.json())
+    .then(() => {
+      const updatedData = data.map((dm) => (
+        dm.id === tgtId ? updDatum : dm
+      ));
+      setData(()=>(updatedData));
+      onModify(updDatum);
+    });
   }
 
   function handleDelete() {
     fetch(`${Api}/${dataSeries}/${id}`, {
       method: "DELETE",
     })
-      .then((r) => r.json())
-      .then(() => {
-        const updatedData = data.filter((dm) => dm.id !== id);
-        setData(()=>(updatedData));
-        onDelete(id);
-      });
+    .then((r) => r.json())
+    .then(() => {
+      const updatedData = data.filter((dm) => dm.id !== id);
+      setData(()=>(updatedData));
+      onDelete(id);
+    });
   }
   
-
   return (
   <tr>
     
