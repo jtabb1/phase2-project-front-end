@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Api =
-// "https://glorify-the-supreme-god-67d35a.herokuapp.com";
-"http://localhost:4000";
+"https://glorify-the-supreme-god-67d35a.herokuapp.com";
+// "http://localhost:4000";
 
 function DataPoint({
   data, 
@@ -14,7 +14,7 @@ function DataPoint({
   
   const { id, ts, val } = datum;
 
-  function handleSubmit(evt) {
+  function handleSubmitModify(evt) {
     evt.preventDefault();
 
     const tgtId = parseInt(evt.target.id,10);
@@ -70,7 +70,7 @@ function DataPoint({
         </button>
       </td>
       <td>
-        <form id={id} name={ts} onSubmit={handleSubmit}>
+        <form id={id} name={ts} onSubmit={handleSubmitModify}>
           <input
             id={`input-${id}`}
             type="text"

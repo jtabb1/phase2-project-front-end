@@ -7,8 +7,8 @@ import QuantityGraph from "./QuantityGraph";
 import NavBar from "./NavBar";
 
 const Api =
-// "https://glorify-the-supreme-god-67d35a.herokuapp.com";
-"http://localhost:4000";
+"https://glorify-the-supreme-god-67d35a.herokuapp.com";
+// "http://localhost:4000";
 
 function App() {
 
