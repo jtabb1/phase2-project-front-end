@@ -24,17 +24,11 @@ function QualityGraph({ qualityData, setQualityData }) {
   }
 
   function onModify(updDatum) {
-    const updatedData = data.map((dm) => (
-      dm.id === updDatum.id ? updDatum : dm
-      ));
     setForcedRedraw((ps) => (ps+1));
-    setData(()=>(updatedData)); // <- do i need this?
   };
 
   function onDelete(deletedId) {
-    const updatedData = data.filter((dm) => dm.id !== deletedId);
     setForcedRedraw((ps) => (ps+1));
-    setData(()=>(updatedData)); // <- do i need this?
   };
 
   let vptW = window.innerWidth;
