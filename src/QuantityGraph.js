@@ -1,49 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
-// import SubmitLayer from './SubmitLayer';
+import CreateForm from './CreateForm';
 import DataList from './DataList';
 
 const dataSeriesX = 'quantityData';
 const strokeColor = "green";
-const Api =
-// "https://glorify-the-supreme-god-67d35a.herokuapp.com";
-"http://localhost:4000";
 
-function QuantityGraph({ dataSeries, setDataSeries}) {
+function QuantityGraph({ quantityData, setQuantityData }) {
 
-  setDataSeries(dataSeriesX);
+  const data = quantityData;
+  const setData = setQuantityData;
 
   let g01aWidthScaling = "0.9";
   let g01aHeightScaling = "0.4";
   let g01aM = 40;
   
-  // eslint-disable-next-line
-  const [data, setData] = useState(null);
+  const [forcedRedraw, setForcedRedraw] = useState(0);
   const svgRef = useRef();
 
-  function onDelete () {};
-  function onModify () {};
+  function onCreate() {
+    setForcedRedraw((ps) => (ps+1));
+  }
+
+  function onModify(updDatum) {
+    const updatedData = data.map((dm) => (
+      dm.id === updDatum.id ? updDatum : dm
+      ));
+    setForcedRedraw((ps) => (ps+1));
+    setData(()=>(updatedData)); // <- do i need this?
+  };
+
+  function onDelete(deletedId) {
+    const updatedData = data.filter((dm) => dm.id !== deletedId);
+    setForcedRedraw((ps) => (ps+1));
+    setData(()=>(updatedData)); // <- do i need this?
+  };
+
+  let vptW = window.innerWidth;
+  let vptH = window.innerHeight;
+  let g01aW = +g01aWidthScaling * vptW;
+  let g01aH = +g01aHeightScaling * vptH;
+
+  var parseDateStr = d3.utcParse( "%Y-%m-%d" );
+  var format = d3.utcFormat( "%m/%Y" );
 
   useEffect( () => {
 
-    fetch(
-      `${Api}/${dataSeriesX}`
-    )
-    .then((r) => r.json())
-    .then((data0)=>{
+      data.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts));
 
-      setData(data0);
-
-      let vptW = window.innerWidth;
-      let vptH = window.innerHeight;
-      let g01aW = +g01aWidthScaling * vptW;
-      let g01aH = +g01aHeightScaling * vptH;
-
-      var parseDateStr = d3.utcParse( "%m/%d/%Y" );
-      var format = d3.utcFormat( "%m/%Y" );
-
-      const dataReg = data0.map( 
+      const dataReg = data.map( 
         o => {
           return {ts: parseDateStr(o.ts), val: o.val} 
       });
@@ -53,7 +59,7 @@ function QuantityGraph({ dataSeries, setDataSeries}) {
       ;
       const dataDbl = d3.pairs( dataReg, 
         (a,b) => ({ src: a, dst: b }) 
-      ); 
+      );
 
       var scT = d3.scaleUtc()
         .domain( d3.extent( dataReg, d=>d.ts ) ).nice()  
@@ -62,6 +68,11 @@ function QuantityGraph({ dataSeries, setDataSeries}) {
         .domain( [0, 1.3*maxVal] ).range( [ g01aH-g01aM, g01aM ] );
 
       const svg = select(svgRef.current);
+      
+      svg.selectAll("g").remove();
+      svg.selectAll("circle").remove();
+      svg.selectAll("line").remove();
+
       svg
         .attr( "cursor","crosshair" )
         .attr( "width",g01aW )
@@ -90,27 +101,34 @@ function QuantityGraph({ dataSeries, setDataSeries}) {
         .call( d3.axisLeft(scY) )
       ;
 
-      svg.append( "g" )
+      svg
+        .append( "g" )
         .attr( "transform", `translate(0,${g01aH-g01aM})` )        
         .call( d3.axisBottom(scT).tickFormat( format )
         .ticks( d3.utcMonth.every(2) ) )
       ;
-    });
-  }, []);
-
-  return (
+  }, [forcedRedraw]);
+  
+  return data !== null ?  (
     <div>
       <svg ref={svgRef}></svg>
-      {/* <SubmitLayer /> */}
-      {data !== null ? 
-        <DataList 
-          data={data}
-          dataSeries={dataSeries}
-          onDelete={onDelete}
-          onModify={onModify}
-        /> :
-        <p>loading ... </p>}
-    </div>);
+      <CreateForm 
+        data={data}
+        dataSeries={dataSeriesX}
+        onCreate={onCreate}
+        setData={setData}
+      />
+      <DataList 
+        data={data}
+        dataSeries={dataSeriesX}
+        onDelete={onDelete}
+        onModify={onModify}
+        setData={setData}
+      /> 
+    </div> 
+  ) : (
+    <p>loading ... </p> 
+  );
 }
 
 export default QuantityGraph;
