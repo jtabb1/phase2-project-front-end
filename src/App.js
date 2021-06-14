@@ -2,9 +2,9 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
-import QualityGraph from "./QualityGraph";
-import QuantityGraph from "./QuantityGraph";
-import NavBar from "./NavBar";
+import QualityGraph from "./components/QualityGraph/QualityGraph";
+import QuantityGraph from "./components/QuantityGraph/QuantityGraph";
+import NavBar from "./components/NavBar/NavBar";
 
 const Api =
 "https://glorify-the-supreme-god-67d35a.herokuapp.com";
@@ -15,6 +15,7 @@ function App() {
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
 
+  // eslint-disable-next-line
   useEffect( () => {
 
     fetch(

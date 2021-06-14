@@ -12,7 +12,7 @@ function CreateForm({ data, dataSeries, onCreate, setData }) {
 
   function handleTsChange(event) {
     setFormData({
-      ...formData,
+      ...formData, 
       ts: event.target.value,
     });
   }

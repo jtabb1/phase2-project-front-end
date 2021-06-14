@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
-import CreateForm from './CreateForm';
-import DataList from './DataList';
+import CreateForm from "../CreateForm/CreateForm";
+import DataList from '../DataList/DataList';
 
-const dataSeriesX = 'quantityData';
-const strokeColor = "green";
+const dataSeriesX = 'qualityData';
+const strokeColor = "red";
 
-function QuantityGraph({ quantityData, setQuantityData }) {
+function QualityGraph({ qualityData, setQualityData }) {
 
-  const data = quantityData;
-  const setData = setQuantityData;
+  const data = qualityData;
+  const setData = setQualityData;
 
   let g01aWidthScaling = "0.9";
   let g01aHeightScaling = "0.4";
@@ -24,17 +24,11 @@ function QuantityGraph({ quantityData, setQuantityData }) {
   }
 
   function onModify(updDatum) {
-    const updatedData = data.map((dm) => (
-      dm.id === updDatum.id ? updDatum : dm
-      ));
     setForcedRedraw((ps) => (ps+1));
-    setData(()=>(updatedData)); // <- do i need this?
   };
 
   function onDelete(deletedId) {
-    const updatedData = data.filter((dm) => dm.id !== deletedId);
     setForcedRedraw((ps) => (ps+1));
-    setData(()=>(updatedData)); // <- do i need this?
   };
 
   let vptW = window.innerWidth;
@@ -107,6 +101,7 @@ function QuantityGraph({ quantityData, setQuantityData }) {
         .call( d3.axisBottom(scT).tickFormat( format )
         .ticks( d3.utcMonth.every(2) ) )
       ;
+  // eslint-disable-next-line
   }, [forcedRedraw]);
   
   return data !== null ?  (
@@ -131,4 +126,4 @@ function QuantityGraph({ quantityData, setQuantityData }) {
   );
 }
 
-export default QuantityGraph;
+export default QualityGraph;

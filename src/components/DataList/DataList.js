@@ -1,6 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import DataPoint from "./DataPoint";
+import DataPoint from "../DataPoint/DataPoint";
 
 function DataList({ data, dataSeries, onModify, onDelete, setData}) {
 
