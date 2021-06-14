@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
 import QualityGraph from "./components/QualityGraph/QualityGraph";
 import QuantityGraph from "./components/QuantityGraph/QuantityGraph";
+import Home from "./components/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
 
 const Api =
@@ -15,7 +16,6 @@ function App() {
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
 
-  // eslint-disable-next-line
   useEffect( () => {
 
     fetch(
@@ -56,7 +56,7 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
+            <Home qualityData={qualityData} setQualityData={setQualityData}
             />
           </Route>
 

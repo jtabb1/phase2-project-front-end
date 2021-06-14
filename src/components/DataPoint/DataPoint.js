@@ -61,11 +61,11 @@ function DataPoint({
   return (
   <tr>
     
-    <td>
+      <td>
         {ts}
       </td>
       <td>
-        <button type="button" className="btn btn-danger" onClick={handleDelete}>
+        <button type="button" className="btn btn-danger btn-sm" onClick={handleDelete}>
           Delete
         </button>
       </td>
@@ -80,7 +80,7 @@ function DataPoint({
             defaultValue={val}
           />
           <button type="submit" 
-           className="btn btn-success"
+           className="btn btn-success btn-sm"
           >
             Change
           </button>

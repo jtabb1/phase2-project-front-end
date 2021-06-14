@@ -44,36 +44,44 @@ function CreateForm({ data, dataSeries, onCreate, setData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-row">
+      <div className="container my-3">
 
-        <div className="col-5">
-          <input
-            id="ts"
-            type="date"
-            className="form-control"
-            placeholder="Enter Date"
-            name="ts"
-            value={formData.ts}
-            onChange={handleTsChange}
-          />
+        <div className="row">
+          <h3 className="text-center">Enter new data below:</h3>
         </div>
 
-        <div className="col">
-          <input
-            id="val"
-            type="text"
-            className="form-control"
-            placeholder="Enter Data Value"
-            name="val"
-            value={formData.val}
-            onChange={handleValChange}
-          />
-        </div>
+        <div className="row">
 
-        <div className="col">
-          <button type="submit" className="btn btn-success">
-            Submit
-          </button>
+          <div className="col-4">
+            <input
+              id="ts"
+              type="date"
+              className="form-control"
+              placeholder="Enter Date"
+              name="ts"
+              value={formData.ts}
+              onChange={handleTsChange}
+            />
+          </div>
+
+          <div className="col-4">
+            <input
+              id="val"
+              type="text"
+              className="form-control"
+              placeholder="Enter Data Value"
+              name="val"
+              value={formData.val}
+              onChange={handleValChange}
+            />
+          </div>
+
+          <div className="col-4">
+            <button type="submit" className="btn btn-success">
+              Submit
+            </button>
+          </div>
+
         </div>
 
       </div>

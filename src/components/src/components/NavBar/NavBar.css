@@ -1,0 +1,19 @@
+nav {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-family: "Comic Sans MS";
+    color: red;
+  }
+  
+  nav a {
+    text-decoration: none;
+    margin: 10px;
+  }
+  
+  nav a.active {
+    text-decoration: underline;
+  }

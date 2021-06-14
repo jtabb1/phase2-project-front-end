@@ -23,11 +23,11 @@ function QualityGraph({ qualityData, setQualityData }) {
     setForcedRedraw((ps) => (ps+1));
   }
 
-  function onModify(updDatum) {
+  function onModify() {
     setForcedRedraw((ps) => (ps+1));
   };
 
-  function onDelete(deletedId) {
+  function onDelete() {
     setForcedRedraw((ps) => (ps+1));
   };
 
@@ -106,7 +106,9 @@ function QualityGraph({ qualityData, setQualityData }) {
   
   return data !== null ?  (
     <div>
-      <svg ref={svgRef}></svg>
+      <div className='container'>
+        <svg ref={svgRef}></svg>
+      </div>
       <CreateForm 
         data={data}
         dataSeries={dataSeriesX}

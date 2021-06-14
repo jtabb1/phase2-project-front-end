@@ -23,18 +23,12 @@ function QuantityGraph({ quantityData, setQuantityData }) {
     setForcedRedraw((ps) => (ps+1));
   }
 
-  function onModify(updDatum) {
-    const updatedData = data.map((dm) => (
-      dm.id === updDatum.id ? updDatum : dm
-      ));
+  function onModify() {
     setForcedRedraw((ps) => (ps+1));
-    setData(()=>(updatedData)); // <- do i need this?
   };
 
-  function onDelete(deletedId) {
-    const updatedData = data.filter((dm) => dm.id !== deletedId);
+  function onDelete() {
     setForcedRedraw((ps) => (ps+1));
-    setData(()=>(updatedData)); // <- do i need this?
   };
 
   let vptW = window.innerWidth;
@@ -112,7 +106,9 @@ function QuantityGraph({ quantityData, setQuantityData }) {
   
   return data !== null ?  (
     <div>
-      <svg ref={svgRef}></svg>
+      <div className='container'>
+        <svg ref={svgRef}></svg>
+      </div>
       <CreateForm 
         data={data}
         dataSeries={dataSeriesX}

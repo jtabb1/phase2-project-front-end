@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 const linkStyles = {
   width: "100px",
@@ -12,43 +13,48 @@ const linkStyles = {
 
 function NavBar() {
   return (
-    <div className="container">
+    <div className="container m-2">
       <div className="row">
 
-        <div className="col"></div>
-
-        {/* <NavLink
-          to="/"
-          exact
-        >
-        </NavLink> */}
+        <div className="col">
+          <NavLink
+            to="/"
+            exact 
+            style={linkStyles}
+            activeStyle={{
+              background: "darkblue",
+            }}
+          >
+            Home
+          </NavLink>
+        </div>
           
         <div className="col">
-        <NavLink
-          to="/quality"
-          style={linkStyles}
-          activeStyle={{
-            background: "darkblue",
-          }}
-        >
-          Quality
-        </NavLink>
+          <NavLink
+            to="/quality"
+            exact
+            style={linkStyles}
+            activeStyle={{
+              background: "darkblue",
+            }}
+          >
+            Quality
+          </NavLink>
         </div>
 
         <div className="col">
-        <NavLink
-          to="/quantity"
-          exact
-          style={linkStyles}
-          activeStyle={{
-            background: "darkblue",
-          }}
-        >
-          Quantity
-        </NavLink>
+          <NavLink
+            to="/quantity"
+            exact
+            style={linkStyles}
+            activeStyle={{
+              background: "darkblue",
+            }}
+          >
+            Quantity
+          </NavLink>
         </div>
 
-        <div className="col"></div>
       </div>
     </div>
   );

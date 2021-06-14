@@ -1,0 +1,38 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: blue;
+    opacity: 0.8;
+    
+    padding: 1rem;
+  }
+  
+  .home-heading {
+    font-size: 2.5rem;
+    text-decoration: underline;
+    margin-bottom: 2rem;
+    font-family: "Comic Sans MS";
+    color: red;
+  }
+  
+  .home-img {
+    width: 40%;
+    margin-bottom: 2rem;
+  }
+  
+  .home-link {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+    padding: 20px;
+    transition: all 0.2s linear;
+  }
+  
+  .home-link:hover {
+    font-size: 1.7rem;
+    background-color: black;
+    color: white;
+  }
