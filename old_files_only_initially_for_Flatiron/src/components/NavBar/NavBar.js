@@ -13,8 +13,8 @@ const linkStyles = {
 
 function NavBar() {
   return (
-    <div className="container my-4">
-      <div className="row align-middle">
+    <div className="container m-2">
+      <div className="row">
 
         <div className="col">
           <NavLink
@@ -25,7 +25,7 @@ function NavBar() {
               background: "darkblue",
             }}
           >
-            HomeSlice
+            Home
           </NavLink>
         </div>
           

@@ -47,7 +47,7 @@ function CreateForm({ data, dataSeries, onCreate, setData }) {
       <div className="container my-3">
 
         <div className="row">
-          <h3 className="text-center">Enter A New Data Point:</h3>
+          <h3 className="text-center">Enter new data below:</h3>
         </div>
 
         <div className="row">
@@ -67,7 +67,7 @@ function CreateForm({ data, dataSeries, onCreate, setData }) {
           <div className="col-4">
             <input
               id="val"
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Enter Data Value"
               name="val"

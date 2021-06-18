@@ -61,38 +61,30 @@ function DataPoint({
   return (
   <tr>
     
-      {/* <td>
+      <td>
+        {ts}
       </td>
       <td>
-      </td> */}
-      <td className="align-middle">
-        <div className="container align-middle">
-          <div className="row align-middle">
-            <div className="col align-middle">
-              <span className="align-middle">{ts}</span>
-            </div>
-            <div className="col">
-              <form id={id} name={ts} onSubmit={handleSubmitModify}>
-                <input
-                  id={`input-${id}`}
-                  type="number"
-                  className="form-control"
-                  placeholder={val}
-                  name="val"
-                  defaultValue={val}
-                />
-                <button type="button" className="btn btn-danger btn-sm" onClick={handleDelete}>
-                  Delete
-                </button>
-                <button type="submit" 
-                className="btn btn-success btn-sm"
-                >
-                  Change
-                </button>
-              </form>
-            </div>
-        </div>
-        </div>
+        <button type="button" className="btn btn-danger btn-sm" onClick={handleDelete}>
+          Delete
+        </button>
+      </td>
+      <td>
+        <form id={id} name={ts} onSubmit={handleSubmitModify}>
+          <input
+            id={`input-${id}`}
+            type="text"
+            className="form-control"
+            placeholder={val}
+            name="val"
+            defaultValue={val}
+          />
+          <button type="submit" 
+           className="btn btn-success btn-sm"
+          >
+            Change
+          </button>
+        </form>
       </td>
   </tr>);
 }
