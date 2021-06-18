@@ -25,7 +25,7 @@ function NavBar() {
               background: "darkblue",
             }}
           >
-            Home
+            HomePage
           </NavLink>
         </div>
           
