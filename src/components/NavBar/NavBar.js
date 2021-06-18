@@ -25,7 +25,7 @@ function NavBar() {
               background: "darkblue",
             }}
           >
-            HomeSlice
+            Home
           </NavLink>
         </div>
           

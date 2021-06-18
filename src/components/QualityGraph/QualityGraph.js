@@ -149,7 +149,7 @@ function QualityGraph({ qualityData, setQualityData }) {
       /> 
     </div> 
   ) : (
-    <p>loading ... </p>
+    <p>loading graph data... </p>
   );
 }
 
