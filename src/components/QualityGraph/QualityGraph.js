@@ -46,7 +46,8 @@ function QualityGraph({ qualityData, setQualityData }) {
 
     let vptW = window.innerWidth;
 
-    console.log(vptW);
+    console.log('useEffect graph was called.')
+    // console.log(vptW);
     if (vptW >= 1400) {
       vptW = 1320;
     } else if (vptW >= 1200) {
@@ -58,7 +59,8 @@ function QualityGraph({ qualityData, setQualityData }) {
     } else if (vptW >= 576) {
       vptW = 540;
     }
-    console.log(vptW);
+    // console.log(vptW);
+    console.log(data);
 
     let g01aW = +g01aWidthScaling * vptW;
 
@@ -144,10 +146,12 @@ function QualityGraph({ qualityData, setQualityData }) {
         setData={setData}
       />
       <ResetData 
+        data={data}
+        dataSeries={dataSeriesX}
         onReset={onReset}
         setData={setData}
-      /> 
-    </div> 
+      />
+    </div>
   ) : (
     <p>loading graph data... </p>
   );

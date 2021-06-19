@@ -76,12 +76,17 @@ function DataPoint({
                 <input
                   id={`input-${id}`}
                   type="number"
-                  className="form-control"
+                  step="any"
+                  className=""
                   placeholder={val}
                   name="val"
                   defaultValue={val}
                 />
-                <button type="button" className="btn btn-danger btn-sm" onClick={handleDelete}>
+                <button 
+                  type="button" 
+                  className="btn btn-danger btn-sm" 
+                  onClick={handleDelete}
+                >
                   Delete
                 </button>
                 <button type="submit" 
