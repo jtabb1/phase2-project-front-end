@@ -39,38 +39,82 @@ function ResetData({ data, dataSeries, onReset, setData}) {
   // console.log(allData);
   const resetToData = allData[dataSeries];
   // console.log(resetToData);
+  let prevData = [ ...data];
+  console.log(prevData);
+  prevData.sort((a,b) => a.id - b.id);
+  let patchData =[];
+  let postData = [];
+  let deleteData = [];
+  const skipIndices = [];
 
-  function handleDelete() {
-    data.forEach(et => {
-      console.log(`${Api}/${dataSeries}/${et.id}`);
-      fetch(`${Api}/${dataSeries}/${et.id}`, {
-        method: "DELETE",
-      })
-      .catch(console.log);
-    });
-    handlePopulateDefault();
+  function handleReset() {
+    for (let i=0; i<resetToData.length; i++) {
+      if (!prevData.i) {
+        postData.push({
+          id: resetToData.id, 
+          ts: resetToData.ts, 
+          val : resetToData.val});
+      }
+      if (prevData.i === resetToData.i) {
+        skipIndices.push(i);
+        if (prevData.ts !== resetToData.ts || prevData.ts !== resetToData.ts) {
+          patchData.push({
+            id: resetToData.id, 
+            ts: resetToData.ts, 
+            val : resetToData.val});
+        }
+      }
+    }
+    for (let i=0; i<prevData.length; i++) {
+      if (!skipIndices[i]) {
+        deleteData.push(prevData[i]);
+      }
+    }
+    // setData(resetToData);
   }
 
-  function handlePopulateDefault() {
-    resetToData.forEach(et => {
-      const datum = { ts: et.ts, val: et.val };
-      console.log(datum);
-      fetch(`${Api}/${dataSeries}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(datum), // revert to formData to see if it still works; set this to a new variable name if nec.
-      })
-        .catch(console.log);
-    });
+  // function postRow(row) {
+  //     fetch(`${Api}/${dataSeries}`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(row), // revert to formData to see if it still works; set this to a new variable name if nec.
+  //     })
+  //     .catch(console.log);
+  // }
+  
 
-    // setData(()=>(null));
-  }
+  // function handleDelete() {
+  //   data.forEach(et => {
+  //     console.log(`${Api}/${dataSeries}/${et.id}`);
+  //     fetch(`${Api}/${dataSeries}/${et.id}`, {
+  //       method: "DELETE",
+  //     })
+  //     .catch(console.log);
+  //   });
+  //   handlePopulateDefault();
+  // }
+
+  // function handlePopulateDefault() {
+  //   resetToData.forEach(et => {
+  //     const datum = { ts: et.ts, val: et.val };
+  //     console.log(datum);
+  //     fetch(`${Api}/${dataSeries}`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(datum), // revert to formData to see if it still works; set this to a new variable name if nec.
+  //     })
+  //       .catch(console.log);
+  //   });
+  //   // setData(()=>(null));
+  // }
 
   return  <button 
             className="btn btn-danger" 
-            onClick={handleDelete}
+            // onClick={handleDelete}
           >Reset Data</button>;
 }
 
