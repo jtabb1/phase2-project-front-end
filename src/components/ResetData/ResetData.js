@@ -4,16 +4,16 @@ import React from 'react';
 const allData = 
 {
   qualityData: [
-    { id: 101, ts: "1/01/2021", val: 1433.6 },
-    { id: 102, ts: "1/11/2021", val: 1564.2 },
-    { id: 103, ts: "2/01/2021", val: 1539.3 },
-    { id: 104, ts: "2/11/2021", val: 1546.0 },
-    { id: 105, ts: "3/01/2021", val: 1463.8 },
-    { id: 106, ts: "3/11/2021", val: 1462.2 },
-    { id: 107, ts: "4/01/2021", val: 1515.7 },
-    { id: 108, ts: "5/01/2021", val: 1334.2 },
-    { id: 109, ts: "6/01/2021", val: 1558.5 },
-    { id: 1010, ts: "7/01/2021", val: 1545.5 }
+    { id: 1, ts: "1/01/2021", val: 1433.6 },
+    { id: 2, ts: "1/11/2021", val: 1564.2 },
+    { id: 3, ts: "2/01/2021", val: 1539.3 },
+    { id: 4, ts: "2/11/2021", val: 1546.0 },
+    { id: 5, ts: "3/01/2021", val: 1463.8 },
+    { id: 6, ts: "3/11/2021", val: 1462.2 },
+    { id: 7, ts: "4/01/2021", val: 1515.7 },
+    { id: 8, ts: "5/01/2021", val: 1334.2 },
+    { id: 9, ts: "6/01/2021", val: 1558.5 },
+    { id: 10, ts: "7/01/2021", val: 1545.5 }
   ],
   quantityData: [
     { id: 1, ts: "1/01/2021", val: 951.6 },
@@ -40,7 +40,7 @@ function ResetData({ data, dataSeries, onReset, setData}) {
   const resetToData = allData[dataSeries];
   // console.log(resetToData);
   let prevData = [ ...data];
-  console.log(prevData);
+  // console.log(prevData);
   prevData.sort((a,b) => a.id - b.id);
   let patchData =[];
   let postData = [];
@@ -48,16 +48,25 @@ function ResetData({ data, dataSeries, onReset, setData}) {
   const skipIndices = [];
 
   function handleReset() {
+    let idPrev = (!!prevData[0]) ? prevData[0].id : null;
+    if (!idPrev) {
+      postData(all);
+      return;
+    }
     for (let i=0; i<resetToData.length; i++) {
-      if (!prevData.i) {
+      let idReset = resetToData[i].id;
+      // console.log(resetToData[i]);
+      let idPrev = (!!prevData[i]) ? prevData[i].id : null;
+      if (!prevData[i]) {
         postData.push({
           id: resetToData.id, 
           ts: resetToData.ts, 
           val : resetToData.val});
       }
-      if (prevData.i === resetToData.i) {
+      if (prevData[i].id === resetToData[i].id) {
         skipIndices.push(i);
-        if (prevData.ts !== resetToData.ts || prevData.ts !== resetToData.ts) {
+        if (prevData[i].val !== resetToData[i].val 
+            || prevData[i].ts !== resetToData[i].ts) {
           patchData.push({
             id: resetToData.id, 
             ts: resetToData.ts, 
@@ -70,6 +79,14 @@ function ResetData({ data, dataSeries, onReset, setData}) {
         deleteData.push(prevData[i]);
       }
     }
+
+    console.log(prevData);
+    console.log(postData);
+    console.log(patchData);
+    console.log(deleteData);
+    console.log(skipIndices.length + postData.length
+      +patchData.length + deleteData.length);
+
     // setData(resetToData);
   }
 
@@ -114,7 +131,7 @@ function ResetData({ data, dataSeries, onReset, setData}) {
 
   return  <button 
             className="btn btn-danger" 
-            // onClick={handleDelete}
+            onClick={handleReset}
           >Reset Data</button>;
 }
 

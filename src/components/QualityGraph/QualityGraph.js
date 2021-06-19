@@ -60,7 +60,7 @@ function QualityGraph({ qualityData, setQualityData }) {
       vptW = 540;
     }
     // console.log(vptW);
-    console.log(data);
+    // console.log(data);
 
     let g01aW = +g01aWidthScaling * vptW;
 
