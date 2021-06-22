@@ -130,7 +130,10 @@ function QualityGraph({ qualityData, setQualityData }) {
   return data !== null ?  (
     <div>
       <div className='container'>
-        <svg ref={svgRef}></svg>
+        <div className='row'>
+
+          <svg ref={svgRef}></svg>
+        </div>
       </div>
       <CreateForm 
         data={data}
