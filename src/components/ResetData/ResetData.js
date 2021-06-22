@@ -7,7 +7,7 @@ const allData =
     { id: 1, ts: "2021-01-01", val: 1433.6 },
     { id: 2, ts: "2021-01-11", val: 1564.2 },
     { id: 3, ts: "2021-02-01", val: 1539.3 },
-    { id: 4, ts: "2021-02-11", val: 1546.0 },
+    { id: 4, ts: "2021-02-11", val: 1546.1 },
     { id: 5, ts: "2021-03-01", val: 1463.8 },
     { id: 6, ts: "2021-03-11", val: 1462.2 },
     { id: 7, ts: "2021-04-01", val: 1515.7 },
@@ -22,7 +22,7 @@ const allData =
     { id: 4, ts: "2021-02-11", val: 974.2 },
     { id: 5, ts: "2021-03-01", val: 980.9 },
     { id: 6, ts: "2021-03-11", val: 951.2 },
-    { id: 7, ts: "2021-04-01", val: 909.0 },
+    { id: 7, ts: "2021-04-01", val: 909.1 },
     { id: 8, ts: "2021-05-01", val: 997.9 },
     { id: 9, ts: "2021-06-01", val: 988.1 },
     { id: 10, ts:"2021-07-01", val: 936.6 }
@@ -31,8 +31,8 @@ const allData =
 ;
 
 const Api =
-// "https://glorify-the-supreme-god-67d35a.herokuapp.com";
-"http://localhost:4000";
+"https://glorify-the-supreme-god-67d35a.herokuapp.com";
+// "http://localhost:4000";
 
 function ResetData({ data, dataSeries, onReset, setData}) {
 
@@ -72,7 +72,7 @@ function ResetData({ data, dataSeries, onReset, setData}) {
           ts: resetToData[i].ts, 
           val: resetToData[i].val};
         postData.push(newRow);
-        postRow(newRow);
+        postRow(newRow,0);
       }
       if (idPrev === idReset) {
         skipIndices.push( (j-1) );
@@ -83,7 +83,7 @@ function ResetData({ data, dataSeries, onReset, setData}) {
             id: resetToData[i].id, 
             ts: resetToData[i].ts, 
             val: resetToData[i].val});
-          updateRow(resetToData[i]);
+          updateRow(resetToData[i],0);
         }
       }
     }
@@ -94,7 +94,7 @@ function ResetData({ data, dataSeries, onReset, setData}) {
         console.log(i, i);
         const rowPrev = prevData[i];
         deleteData.push(rowPrev);
-        deleteRow(rowPrev);
+        deleteRow(rowPrev,0);
       }
     }
     console.log(prevData);
@@ -106,15 +106,15 @@ function ResetData({ data, dataSeries, onReset, setData}) {
     // setData(resetToData);
 
     console.log(`Data Length: ${numRows}`);
-    getNumRows();
+    getNumRows(0);
+    setNumErrors( ()=>(0) );
     onReset();
-
-    // if (numRows !== resetToData.length) {
-    //   handleReset();
-    // }
+    console.log('The 3rd to last line of handleReset().');
+    window.location.reload();
+    return false;
   }
 
-  function deleteRow(row) {
+  function deleteRow(row,retries) {
     fetch(`${Api}/${dataSeries}/${row.id}`, {
       method: "DELETE",
     })
@@ -123,10 +123,21 @@ function ResetData({ data, dataSeries, onReset, setData}) {
       const updatedData = data.filter((dm) => dm.id !== row.id);
       setData(()=>(updatedData))
     })
-    .catch(console.log);
+    .catch( er => {
+      setNumErrors( (ps)=>(ps+1) );
+      console.log(`The Delete error: < ${numErrors}`);
+      console.log(er);
+      retries++;
+      if (retries < 100) {
+        console.log(`Retried Delete ${retries} time(s) ...`)
+        deleteRow(row,retries);
+      } else {
+        return;
+      }
+    });
   }
 
-  function updateRow(row) {
+  function updateRow(row,retries) {
     fetch(`${Api}/${dataSeries}/${row.id}`, {
       method: "PATCH",
       headers: {
@@ -141,10 +152,21 @@ function ResetData({ data, dataSeries, onReset, setData}) {
       ));
      setData(()=>(updatedData));
     })
-    .catch(console.log);
+    .catch( er => {
+      setNumErrors( (ps)=>(ps+1) );
+      console.log(`The Patch error: < ${numErrors}`);
+      console.log(er);
+      retries++;
+      if (retries < 100) {
+        console.log(`Retried Patch ${retries} time(s) ...`)
+        updateRow(row,retries);
+      } else {
+        return;
+      }
+    });
   }
 
-  function postRow(row) {
+  function postRow(row,retries) {
     fetch(`${Api}/${dataSeries}`, {
       method: "POST",
       headers: {
@@ -160,18 +182,17 @@ function ResetData({ data, dataSeries, onReset, setData}) {
       setNumErrors( (ps)=>(ps+1) );
       console.log(`The Post error: < ${numErrors}`);
       console.log(er);
-      if (numErrors < 5) {
-        setTimeout( postRow(row), 40 );
-        console.log('re-trying Post function ...')
+      retries++;
+      if (retries < 100) {
+        console.log(`Retried Post ${retries} time(s) ...`)
+        postRow(row,retries);
       } else {
-        setNumErrors( ()=>(0) );
-        console.log('Settling with Post error')
         return;
       }
     });
   }
 
-  function getNumRows() {
+  function getNumRows(retries) {
     fetch(
       `${Api}/${dataSeries}`
     )
@@ -181,30 +202,31 @@ function ResetData({ data, dataSeries, onReset, setData}) {
         () => da.length
       );
       if (da.length === resetToData.length) {
+        console.log('Get worked and the requirements achieved, on to onReset().')
+        setNumErrors( ()=>(0) );
         onReset();
         return;
       } else {
-        handleReset();
+        console.log('handleReset being called recursively ...')
+        handleReset();    // Maybe this could be editted out
       }
     })
     .catch( er => {
       setNumErrors( (ps)=>(ps+1) );
       console.log(`The Get error: < ${numErrors}`);
       console.log(er);
-      if (data.length === resetToData.length) {
-        setNumErrors( ()=>(0) );
-        onReset();
-        return;
-      } else if (numErrors < 5) {
-        setTimeout( handleReset(), 20 );
-        console.log('re-trying entire handleReset() ...')
+      retries++;
+      if (retries < 100) {
+        console.log(`Retried Get ${retries} time(s) ...`)
+        getNumRows(retries);
       } else {
         setNumErrors( ()=>(0) );
-        console.log('Settling with Get error')
-        return;
+        console.log('Exiting Get Error ...')
+        onReset();
+        window.location.reload();
+        // return false;
       }
     });
-    // .catch(console.log);
   }
 
   // function updateRows(patchData) {
