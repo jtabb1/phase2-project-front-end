@@ -131,7 +131,6 @@ function QualityGraph({ qualityData, setQualityData }) {
     <div>
       <div className='container'>
         <div className='row'>
-
           <svg ref={svgRef}></svg>
         </div>
       </div>
@@ -153,6 +152,9 @@ function QualityGraph({ qualityData, setQualityData }) {
         dataSeries={dataSeriesX}
         onReset={onReset}
         setData={setData}
+        onDelete={onDelete}
+        onCreate={onCreate}
+        onModify={onModify}
       />
     </div>
   ) : (

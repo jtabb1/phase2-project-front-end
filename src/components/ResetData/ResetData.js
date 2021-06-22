@@ -34,7 +34,8 @@ const Api =
 "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 // "http://localhost:4000";
 
-function ResetData({ data, dataSeries, onReset, setData}) {
+function ResetData({ data, dataSeries, onReset, setData,
+    onDelete, onCreate, onModify}) {
 
   const [numRows, setNumRows] = useState(0);
   const [numErrors, setNumErrors] = useState(null);
@@ -121,7 +122,7 @@ function ResetData({ data, dataSeries, onReset, setData}) {
     .then((r) => r.json())
     .then(() => {
       const updatedData = data.filter((dm) => dm.id !== row.id);
-      setData(()=>(updatedData))
+      setData(()=>(updatedData));
     })
     .catch( er => {
       setNumErrors( (ps)=>(ps+1) );
@@ -280,10 +281,20 @@ function ResetData({ data, dataSeries, onReset, setData}) {
   //   // setData(()=>(null));
   // }
 
-  return  <button 
+  return (
+    <div className="container my-4">
+      <div className="row">
+        {/* <div className="col"></div>
+        <div className="col"> */}
+          <span className="text-center"><button 
             className="btn btn-danger" 
             onClick={handleReset}
-          >Reset Data</button>;
+          >Reset Data</button></span>
+        {/* </div>
+        <div className="col"></div> */}
+      </div>
+    </div>
+  );
 }
 
 export default ResetData;
