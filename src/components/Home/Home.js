@@ -11,6 +11,12 @@ function Home() {
   // let g01aW = +g01aWidthScaling * vptW;
   // let g01aH = +g01aHeightScaling * vptH;
 
+  //  //
+  //
+  console.log(" ");
+  console.log("The home component is called.")
+  console.log(" ");
+
   return (
     <div className="container m-3 w-75 overflow-auto">
       <br />

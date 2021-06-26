@@ -2,21 +2,21 @@ import React, { useEffect, useRef } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
 
-const strokeColor = "red";
-
 function D3LineGraph({ data, dataSeries, forcedRedraw }) {
 
   // experiment with passing in forcedRedraw or not passing it in
 
+  let strokeColor = "black";
+
   switch(dataSeries) {
     case "qualityData":
-      const strokeColor = "red";
+      strokeColor = "red";
       break;
     case "quantityData":
-      const strokeColor = "green";
+      strokeColor = "green";
       break;
     default:
-      const strokeColor = "blue";
+      strokeColor = "blue";
   }
 
   let g01aWidthScaling = "0.9";

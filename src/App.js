@@ -22,6 +22,7 @@ function App() {
   const [dataSeries, setDataSeries] = useState(null)
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect( () => {
 
@@ -30,9 +31,11 @@ function App() {
     )
     .then((r) => r.json())
     .then((da)=>{
+      // console.log(da);
       setQualityData(
         da.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts))
       );
+      // console.log(da);
     });
 
     fetch(
@@ -40,9 +43,11 @@ function App() {
     )
     .then((r) => r.json())
     .then((da)=>{
+      // console.log(da);
       setQuantityData(
         da.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts))
       );
+      // console.log(da);
     });
   }, []);
 
@@ -53,7 +58,7 @@ function App() {
       <Switch>
 
         <Route exact path="/quality">
-          {/* <DataPrep
+          <DataPrep
             isFromApp={isFromApp} 
             component={"D3LineGraph"}
             dataSeriesDemand={"qualityData"} 
@@ -61,7 +66,9 @@ function App() {
             setQualityData={setQualityData}
             quantityData={quantityData} 
             setQuantityData={setQuantityData}
-            /> */}
+            data={data} 
+            setData={setData}
+            />
           {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
           /> */}
         </Route>
@@ -75,6 +82,8 @@ function App() {
             setQualityData={setQualityData}
             quantityData={quantityData} 
             setQuantityData={setQuantityData}
+            data={data} 
+            setData={setData}
           /> */}
           {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
           /> */}
@@ -85,10 +94,12 @@ function App() {
             isFromApp={isFromApp} 
             component={"Home"}
             dataSeriesDemand={""} 
-            qualityData={null} 
+            qualityData={qualityData} 
             setQualityData={setQualityData}
-            quantityData={null} 
+            quantityData={quantityData} 
             setQuantityData={setQuantityData}
+            data={data} 
+            setData={setData}
           />
           {/* <Home /> */}
         </Route>
@@ -103,6 +114,8 @@ function App() {
         setQualityData={setQualityData}
         quantityData={quantityData} 
         setQuantityData={setQuantityData}
+        data={data} 
+        setData={setData}
       /> */}
       {/* <DataPrep
         isFromApp={isFromApp} 
@@ -112,6 +125,8 @@ function App() {
         setQualityData={setQualityData}
         quantityData={quantityData} 
         setQuantityData={setQuantityData}
+        data={data} 
+        setData={setData}
       /> */}
       {/* <CreateForm 
         data={data}

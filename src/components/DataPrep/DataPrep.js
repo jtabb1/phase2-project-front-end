@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 // import QualityGraph from "./components/QualityGraph/QualityGraph";
 // import QuantityGraph from "./components/QuantityGraph/QuantityGraph";
 import Home from "../Home/Home";
-import D3LineGraph from "../CreateForm/CreateForm";
+import D3LineGraph from "../D3LineGraph/D3LineGraph";
 import CreateForm from "../CreateForm/CreateForm";
 import DataList from '../DataList/DataList';
 // import QualityGraph from "../QualityGraph/QualityGraph";
@@ -24,19 +24,28 @@ function DataPrep({
   qualityData, 
   setQualityData, 
   quantityData, 
-  setQuantityData
+  setQuantityData,
+  data,
+  setData
 }) {
 
-  const [data, setData] = useState(null);
   const [dataSeries, setDataSeries] = useState(dataSeriesDemand);
   const [forcedRedraw, setForcedRedraw] = useState(0);
 
-  switch(dataSeries) {
+  // console.log(dataSeriesDemand);
+  // console.log(dataSeries);
+  switch(dataSeriesDemand) {
     case "qualityData":
+      console.log(dataSeries)
+      console.log(qualityData);
       setData(qualityData);
+      console.log(data);
       break;
     case "quantityData":
+      console.log(dataSeries)
+      console.log(quantityData);
       setData(quantityData);
+      console.log(data);
       break;
     default:
   }
@@ -55,11 +64,20 @@ function DataPrep({
 
   // //
   //
-  console.log(Api);
-  console.log(isFromApp);
-  console.log(setQualityData);
-  console.log(setQuantityData);
-  console.log(setDataSeries);
+  console.log(" ");
+  console.log(" ");
+  console.log("The data prep component is being called.")
+  console.log(" ");
+  console.log(dataSeries);
+  // console.log(" ");
+  // console.log(Api);
+  // console.log(isFromApp);
+  // console.log(setQualityData);
+  // console.log(setQuantityData);
+  // console.log(setDataSeries);
+  console.log(" ");
+  console.log("The data prep component has been called.")
+  console.log(" ");
 
   // useEffect( () => {
 
@@ -90,13 +108,13 @@ function DataPrep({
         <Home />
       );
     case "D3LineGraph":
-      return (
+      return !!data ? (
         <D3LineGraph 
           data={data}
           dataSeries={dataSeries}
           forcedRedraw={forcedRedraw}
         />
-      );
+      ) : (<p>Loading graph data ...</p>);
     case "CreateForm":
       return (
         <CreateForm 
