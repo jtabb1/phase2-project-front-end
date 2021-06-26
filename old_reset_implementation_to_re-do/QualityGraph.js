@@ -1,7 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
+import CreateForm from "../CreateForm/CreateForm";
+import DataList from '../DataList/DataList';
+import ResetData from '../ResetData/ResetData';
 
+const dataSeriesX = 'qualityData';
 const strokeColor = "red";
 
 function QualityGraph({ qualityData, setQualityData }) {
@@ -13,7 +17,24 @@ function QualityGraph({ qualityData, setQualityData }) {
   let g01aHeightScaling = "0.4";
   let g01aM = 40;
   
+  const [forcedRedraw, setForcedRedraw] = useState(0);
   const svgRef = useRef();
+
+  function onReset() {
+    setForcedRedraw((ps) => (ps+1));
+  }
+
+  function onCreate() {
+    setForcedRedraw((ps) => (ps+1));
+  }
+
+  function onModify() {
+    setForcedRedraw((ps) => (ps+1));
+  };
+
+  function onDelete() {
+    setForcedRedraw((ps) => (ps+1));
+  };
 
   var parseDateStr = d3.utcParse( "%Y-%m-%d" );
   var format = d3.utcFormat( "%m/%Y" );
@@ -113,6 +134,28 @@ function QualityGraph({ qualityData, setQualityData }) {
           <svg ref={svgRef}></svg>
         </div>
       </div>
+      <CreateForm 
+        data={data}
+        dataSeries={dataSeriesX}
+        onCreate={onCreate}
+        setData={setData}
+      />
+      <DataList 
+        data={data}
+        dataSeries={dataSeriesX}
+        onDelete={onDelete}
+        onModify={onModify}
+        setData={setData}
+      />
+      <ResetData 
+        data={data}
+        dataSeries={dataSeriesX}
+        onReset={onReset}
+        setData={setData}
+        onDelete={onDelete}
+        onCreate={onCreate}
+        onModify={onModify}
+      />
     </div>
   ) : (
     <p>loading graph data... </p>

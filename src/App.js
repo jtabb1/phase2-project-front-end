@@ -6,6 +6,8 @@ import QualityGraph from "./components/QualityGraph/QualityGraph";
 import QuantityGraph from "./components/QuantityGraph/QuantityGraph";
 import Home from "./components/Home/Home";
 import NavBar from "./components/NavBar/NavBar";
+import CreateForm from "./components/CreateForm/CreateForm";
+import DataList from './components/DataList/DataList';
 
 const Api =
 "https://glorify-the-supreme-god-67d35a.herokuapp.com";
@@ -15,6 +17,21 @@ function App() {
 
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
+  const [dataSeries, setDataSeries] = useState(null)
+  const [data, setData] = useState(null)
+  const [forcedRedraw, setForcedRedraw] = useState(0);
+
+  function onCreate() {
+    setForcedRedraw((ps) => (ps+1));
+  }
+
+  function onModify() {
+    setForcedRedraw((ps) => (ps+1));
+  };
+
+  function onDelete() {
+    setForcedRedraw((ps) => (ps+1));
+  };
 
   useEffect( () => {
 
@@ -45,12 +62,10 @@ function App() {
 
         <Switch>
 
-          { qualityData !== null ?  
           <Route exact path="/quality">
             <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
             />
           </Route>
-          : <p> initial loading ... </p> }
 
           <Route exact path="/quantity">
             <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
@@ -62,6 +77,21 @@ function App() {
           </Route>
 
         </Switch> 
+
+        <CreateForm 
+          data={data}
+          dataSeries={dataSeries}
+          onCreate={onCreate}
+          setData={setData}
+        />
+        <DataList 
+          data={data}
+          dataSeries={dataSeries}
+          onDelete={onDelete}
+          onModify={onModify}
+          setData={setData}
+        />
+        
     </div>
   );
 }
