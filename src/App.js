@@ -39,16 +39,18 @@ function App() {
     });
   }, []);
 
-  return qualityData !== null ?  (
+  return   (
     <div>
       <NavBar />
 
         <Switch>
 
+          { qualityData !== null ?  
           <Route exact path="/quality">
             <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
             />
           </Route>
+          : <p> initial loading ... </p> }
 
           <Route exact path="/quantity">
             <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
@@ -56,14 +58,11 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <Home qualityData={qualityData} setQualityData={setQualityData}
-            />
+            <Home />
           </Route>
 
         </Switch> 
     </div>
-  ) : (
-    <p>loading ... </p> 
   );
 }
 
