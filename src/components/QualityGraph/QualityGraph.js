@@ -7,7 +7,10 @@ const strokeColor = "red";
 function QualityGraph({ qualityData, setQualityData }) {
 
   const data = qualityData;
-  const setData = setQualityData;
+
+
+  
+  // const setData = setQualityData;
 
   let g01aWidthScaling = "0.9";
   let g01aHeightScaling = "0.4";
@@ -25,6 +28,9 @@ function QualityGraph({ qualityData, setQualityData }) {
 
     let vptW = window.innerWidth;
 
+    //  //
+    //
+    console.log(setQualityData)
     console.log('useEffect graph was called.')
     // console.log(vptW);
     if (vptW >= 1400) {

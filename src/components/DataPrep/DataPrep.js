@@ -1,5 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 // import { Route, Switch } from "react-router-dom";
 // import QualityGraph from "./components/QualityGraph/QualityGraph";
 // import QuantityGraph from "./components/QuantityGraph/QuantityGraph";
@@ -16,10 +17,29 @@ const Api =
 "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 // "http://localhost:4000";
 
-function DataPrep() {
+function DataPrep({
+  isFromApp, 
+  component, 
+  dataSeriesDemand, 
+  qualityData, 
+  setQualityData, 
+  quantityData, 
+  setQuantityData
+}) {
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
+  const [dataSeries, setDataSeries] = useState(dataSeriesDemand);
   const [forcedRedraw, setForcedRedraw] = useState(0);
+
+  switch(dataSeries) {
+    case "qualityData":
+      setData(qualityData);
+      break;
+    case "quantityData":
+      setData(quantityData);
+      break;
+    default:
+  }
 
   function onCreate() {
     setForcedRedraw((ps) => (ps+1));
@@ -32,6 +52,14 @@ function DataPrep() {
   function onDelete() {
     setForcedRedraw((ps) => (ps+1));
   };
+
+  // //
+  //
+  console.log(Api);
+  console.log(isFromApp);
+  console.log(setQualityData);
+  console.log(setQuantityData);
+  console.log(setDataSeries);
 
   // useEffect( () => {
 
@@ -56,44 +84,46 @@ function DataPrep() {
   //   });
   // }, []);
 
-  return   (
-    <div>
-      <NavBar />
-
-        <Switch>
-
-          <Route exact path="/quality">
-            <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
-            />
-          </Route>
-
-          <Route exact path="/quantity">
-            <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
-            />
-          </Route>
-
-          <Route exact path="/">
-            <Home />
-          </Route>
-
-        </Switch>
-
+  switch(component) {
+    case "Home":
+      return (
+        <Home />
+      );
+    case "D3LineGraph":
+      return (
+        <D3LineGraph 
+          data={data}
+          dataSeries={dataSeries}
+          forcedRedraw={forcedRedraw}
+        />
+      );
+    case "CreateForm":
+      return (
         <CreateForm 
           data={data}
           dataSeries={dataSeries}
-          onCreate={onCreate}
           setData={setData}
+          onCreate={onCreate}
         />
+      );
+    case "DataList":
+      return (
         <DataList 
           data={data}
           dataSeries={dataSeries}
-          onDelete={onDelete}
-          onModify={onModify}
           setData={setData}
+          onCreate={onCreate}
+          onModify={onModify}
+          onDelete={onDelete}
         />
-        
-    </div>
-  );
+      );
+    default:
+      return (
+        <p>Unknown component requested.  Please contact support @ email@biz.support.com 
+          to get the information you need.
+        </p>
+      );
+  }
 }
 
 export default DataPrep;

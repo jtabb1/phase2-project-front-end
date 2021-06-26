@@ -2,7 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import DataPoint from "../DataPoint/DataPoint";
 
-function DataList({ data, dataSeries, onModify, onDelete, setData}) {
+function DataList({ data, dataSeries, setData, onCreate, onModify, onDelete }) {
 
     const dataRows = data.map( dm => (
         <DataPoint key={uuidv4()} 

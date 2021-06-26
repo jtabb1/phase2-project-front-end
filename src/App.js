@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
@@ -54,7 +53,7 @@ function App() {
       <Switch>
 
         <Route exact path="/quality">
-          <DataPrep
+          {/* <DataPrep
             isFromApp={isFromApp} 
             component={"D3LineGraph"}
             dataSeriesDemand={"qualityData"} 
@@ -62,13 +61,13 @@ function App() {
             setQualityData={setQualityData}
             quantityData={quantityData} 
             setQuantityData={setQuantityData}
-            />
+            /> */}
           {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
           /> */}
         </Route>
 
         <Route exact path="/quantity">
-          <DataPrep
+          {/* <DataPrep
             isFromApp={isFromApp} 
             component={"D3LineGraph"}
             dataSeriesDemand={"quantityData"} 
@@ -76,7 +75,7 @@ function App() {
             setQualityData={setQualityData}
             quantityData={quantityData} 
             setQuantityData={setQuantityData}
-          />
+          /> */}
           {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
           /> */}
         </Route>
@@ -96,7 +95,7 @@ function App() {
 
       </Switch>
 
-      <DataPrep
+      {/* <DataPrep
         isFromApp={isFromApp} 
         component={"CreateForm"}
         dataSeriesDemand={null} 
@@ -104,8 +103,8 @@ function App() {
         setQualityData={setQualityData}
         quantityData={quantityData} 
         setQuantityData={setQuantityData}
-      />
-      <DataPrep
+      /> */}
+      {/* <DataPrep
         isFromApp={isFromApp} 
         component={"DataList"}
         dataSeriesDemand={null} 
@@ -113,7 +112,7 @@ function App() {
         setQualityData={setQualityData}
         quantityData={quantityData} 
         setQuantityData={setQuantityData}
-      />
+      /> */}
       {/* <CreateForm 
         data={data}
         dataSeries={dataSeries}

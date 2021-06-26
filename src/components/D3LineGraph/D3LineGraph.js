@@ -9,10 +9,10 @@ function D3LineGraph({ data, dataSeries, forcedRedraw }) {
   // experiment with passing in forcedRedraw or not passing it in
 
   switch(dataSeries) {
-    case "qualityGraph":
+    case "qualityData":
       const strokeColor = "red";
       break;
-    case "quantityGraph":
+    case "quantityData":
       const strokeColor = "green";
       break;
     default:
