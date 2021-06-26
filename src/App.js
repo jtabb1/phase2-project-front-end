@@ -19,7 +19,7 @@ function App() {
   const [isFromApp, setIsFromApp] = useState(true);
 
   // eslint-disable-next-line
-  const [dataSeries, setDataSeries] = useState(null)
+  // const [dataSeries, setDataSeries] = useState(null)
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
   const [data, setData] = useState(null);

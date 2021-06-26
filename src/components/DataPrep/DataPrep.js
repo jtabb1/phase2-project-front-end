@@ -32,20 +32,28 @@ function DataPrep({
   const [dataSeries, setDataSeries] = useState(dataSeriesDemand);
   const [forcedRedraw, setForcedRedraw] = useState(0);
 
-  // console.log(dataSeriesDemand);
-  // console.log(dataSeries);
+  //      Why do lines 41 and 44 output blank lines?  I tried using the state  
+  // variable "dataSeries" as the compared parameter in the switch statement but  
+  // was unable to as the output of that variable was apparent blankness in the 
+  // console.log.  This is despite the fact that its default value was set in 
+  // line 32 above.  An additional effort in setting the variable through the 
+  // setDataSeries function below resulted in the program erroring out.
+  console.log(dataSeries);
+  // setDataSeries(dataSeriesDemand); // -> uncomment and it results in an error
+  console.log(dataSeriesDemand);
+  console.log(dataSeries);
   switch(dataSeriesDemand) {
     case "qualityData":
-      console.log(dataSeries)
-      console.log(qualityData);
+      // console.log(dataSeries)
+      // console.log(qualityData);
       setData(qualityData);
-      console.log(data);
+      // console.log(data);
       break;
     case "quantityData":
-      console.log(dataSeries)
-      console.log(quantityData);
+      // console.log(dataSeries)
+      // console.log(quantityData);
       setData(quantityData);
-      console.log(data);
+      // console.log(data);
       break;
     default:
   }
@@ -67,7 +75,7 @@ function DataPrep({
   console.log(" ");
   console.log(" ");
   console.log("The data prep component is being called.")
-  console.log(" ");
+  // console.log(" ");
   console.log(dataSeries);
   // console.log(" ");
   // console.log(Api);
@@ -75,8 +83,8 @@ function DataPrep({
   // console.log(setQualityData);
   // console.log(setQuantityData);
   // console.log(setDataSeries);
-  console.log(" ");
   console.log("The data prep component has been called.")
+  console.log(" ");
   console.log(" ");
 
   // useEffect( () => {
