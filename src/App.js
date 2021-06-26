@@ -9,7 +9,7 @@ import NavBar from "./components/NavBar/NavBar";
 import CreateForm from "./components/CreateForm/CreateForm";
 import DataList from './components/DataList/DataList';
 
-const Api =
+const Api = 
 "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 // "http://localhost:4000";
 
@@ -76,7 +76,7 @@ function App() {
             <Home />
           </Route>
 
-        </Switch> 
+        </Switch>
 
         <CreateForm 
           data={data}
