@@ -26,37 +26,32 @@ function DataPrep({
   quantityData, 
   setQuantityData,
   data,
+  onSetData,
   setData
 }) {
 
-  const [dataSeries, setDataSeries] = useState(dataSeriesDemand);
   const [forcedRedraw, setForcedRedraw] = useState(0);
 
-  //      Why do lines 41 and 44 output blank lines?  I tried using the state  
-  // variable "dataSeries" as the compared parameter in the switch statement but  
-  // was unable to as the output of that variable was apparent blankness in the 
-  // console.log.  This is despite the fact that its default value was set in 
-  // line 32 above.  An additional effort in setting the variable through the 
-  // setDataSeries function below resulted in the program erroring out.
-  console.log(dataSeries);
-  // setDataSeries(dataSeriesDemand); // -> uncomment and it results in an error
   console.log(dataSeriesDemand);
-  console.log(dataSeries);
+  // onSetData(dataSeriesDemand);
   switch(dataSeriesDemand) {
     case "qualityData":
-      // console.log(dataSeries)
-      // console.log(qualityData);
       setData(qualityData);
-      // console.log(data);
+      onSetData()
+      // setForcedRedraw((ps) => (ps+1));
       break;
     case "quantityData":
-      // console.log(dataSeries)
-      // console.log(quantityData);
+      console.log(dataSeriesDemand);
       setData(quantityData);
-      // console.log(data);
+      onSetData()
+      // setForcedRedraw((ps) => (ps+1));
       break;
     default:
   }
+
+  // function onSwitch() {
+  //   setForcedRedraw((ps) => (ps+1));
+  // }
 
   function onCreate() {
     setForcedRedraw((ps) => (ps+1));
@@ -73,18 +68,15 @@ function DataPrep({
   // //
   //
   console.log(" ");
-  console.log(" ");
   console.log("The data prep component is being called.")
   // console.log(" ");
-  console.log(dataSeries);
+  // console.log(dataSeries);
   // console.log(" ");
-  // console.log(Api);
+  console.log(Api);
   // console.log(isFromApp);
   // console.log(setQualityData);
   // console.log(setQuantityData);
   // console.log(setDataSeries);
-  console.log("The data prep component has been called.")
-  console.log(" ");
   console.log(" ");
 
   // useEffect( () => {
@@ -119,7 +111,7 @@ function DataPrep({
       return !!data ? (
         <D3LineGraph 
           data={data}
-          dataSeries={dataSeries}
+          dataSeries={dataSeriesDemand}
           forcedRedraw={forcedRedraw}
         />
       ) : (<p>Loading graph data ...</p>);
@@ -127,17 +119,17 @@ function DataPrep({
       return (
         <CreateForm 
           data={data}
-          dataSeries={dataSeries}
-          setData={setData}
+          dataSeries={dataSeriesDemand}
           onCreate={onCreate}
+          setData={setData}
         />
       );
     case "DataList":
       return (
         <DataList 
           data={data}
-          dataSeries={dataSeries}
-          setData={setData}
+          dataSeriesDemand={dataSeriesDemand}
+          onSetData={onSetData}
           onCreate={onCreate}
           onModify={onModify}
           onDelete={onDelete}

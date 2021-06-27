@@ -19,8 +19,8 @@ function D3LineGraph({ data, dataSeries, forcedRedraw }) {
       strokeColor = "blue";
   }
 
-  let g01aWidthScaling = "0.9";
-  let g01aHeightScaling = "0.4";
+  let g01aWidthScaling = "0.95";
+  // let g01aHeightScaling = "0.4";
   let g01aM = 40;
   
   const svgRef = useRef();
@@ -28,8 +28,7 @@ function D3LineGraph({ data, dataSeries, forcedRedraw }) {
   var parseDateStr = d3.utcParse( "%Y-%m-%d" );
   var format = d3.utcFormat( "%m/%Y" );
 
-  let vptH = window.innerHeight;
-  let g01aH = +g01aHeightScaling * vptH;
+  // let vptH = window.innerHeight;
 
   useEffect( () => {
 
@@ -56,6 +55,8 @@ function D3LineGraph({ data, dataSeries, forcedRedraw }) {
     //  //
 
     let g01aW = +g01aWidthScaling * vptW;
+    // let g01aH = +g01aHeightScaling * vptH;
+    let g01aH = g01aW / 1.61;
 
     data.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts));
 
@@ -118,7 +119,7 @@ function D3LineGraph({ data, dataSeries, forcedRedraw }) {
       .ticks( d3.utcMonth.every(2) ) )
     ;
   // eslint-disable-next-line
-  }, [forcedRedraw]);
+  }, [forcedRedraw, data]);
   
   return data !== null ?  (
     <div>

@@ -24,6 +24,22 @@ function App() {
   const [quantityData, setQuantityData] = useState(null);
   const [data, setData] = useState(null);
 
+  // function onSetData(dataType) {
+  //   switch(dataType) {
+  //     case "qualityData":
+  //       setData(qualityData);
+  //       break;
+  //     case "quantityData":
+  //       setData(quantityData);
+  //       break;
+  //     default:
+  //   }
+  // }
+  function onSetData() {
+    
+  }
+
+
   useEffect( () => {
 
     fetch(
@@ -67,24 +83,26 @@ function App() {
             quantityData={quantityData} 
             setQuantityData={setQuantityData}
             data={data} 
+            onSetData={onSetData} 
             setData={setData}
-            />
+          />
           {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
           /> */}
         </Route>
 
         <Route exact path="/quantity">
-          {/* <DataPrep
+          <DataPrep
             isFromApp={isFromApp} 
-            component={"D3LineGraph"}
+            component={"D3LineGraph"} 
             dataSeriesDemand={"quantityData"} 
             qualityData={qualityData} 
-            setQualityData={setQualityData}
+            setQualityData={setQualityData} 
             quantityData={quantityData} 
-            setQuantityData={setQuantityData}
+            setQuantityData={setQuantityData} 
             data={data} 
+            onSetData={onSetData} 
             setData={setData}
-          /> */}
+              />
           {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
           /> */}
         </Route>
@@ -99,47 +117,50 @@ function App() {
             quantityData={quantityData} 
             setQuantityData={setQuantityData}
             data={data} 
+            onSetData={onSetData} 
             setData={setData}
-          />
+              />
           {/* <Home /> */}
         </Route>
 
       </Switch>
 
-      {/* <DataPrep
+      <DataPrep
         isFromApp={isFromApp} 
-        component={"CreateForm"}
+        component={"CreateForm"} 
         dataSeriesDemand={null} 
         qualityData={qualityData} 
-        setQualityData={setQualityData}
+        setQualityData={setQualityData} 
         quantityData={quantityData} 
-        setQuantityData={setQuantityData}
+        setQuantityData={setQuantityData} 
         data={data} 
+        onSetData={onSetData} 
         setData={setData}
-      /> */}
-      {/* <DataPrep
+      />
+      {/* <DataPrep 
         isFromApp={isFromApp} 
-        component={"DataList"}
+        component={"DataList"} 
         dataSeriesDemand={null} 
         qualityData={qualityData} 
-        setQualityData={setQualityData}
+        setQualityData={setQualityData} 
         quantityData={quantityData} 
         setQuantityData={setQuantityData}
         data={data} 
+        onSetData={onSetData} 
         setData={setData}
       /> */}
       {/* <CreateForm 
         data={data}
         dataSeries={dataSeries}
         onCreate={onCreate}
-        setData={setData}
+        onSetData={onSetData}
       />
       <DataList 
         data={data}
         dataSeries={dataSeries}
         onDelete={onDelete}
         onModify={onModify}
-        setData={setData}
+        onSetData={onSetData}
       /> */}
     </div>
   );
