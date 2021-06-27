@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import './CreateForm.css';
 
 const Api =
 "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 // "http://localhost:4000";
 
-function CreateForm({ data, dataSeries, onCreate, setData }) {
+function CreateForm({ 
+    data, 
+    dataSeries, 
+    onCreate, 
+    setData, 
+    activeMode
+  }) {
   const [formData, setFormData] = useState({
     ts: "",
     val: 0
@@ -42,8 +49,17 @@ function CreateForm({ data, dataSeries, onCreate, setData }) {
     });
   }
 
+  let hideOrShow = "";
+  if (activeMode==="Home") {
+    hideOrShow = "hide-me";
+  }
+  
   return (
-    <form onSubmit={handleSubmit}>
+    <form 
+      id="CreateForm" 
+      className={hideOrShow}
+      onSubmit={handleSubmit}
+    >
       <div className="container my-3">
 
         <div className="row">

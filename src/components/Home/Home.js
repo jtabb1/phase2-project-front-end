@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Home.css";
 
-function Home() {
+function Home({ setActiveMode }) {
 
   // let g01aWidthScaling = "0.9";
   // let g01aHeightScaling = "0.4";
@@ -16,9 +16,14 @@ function Home() {
   console.log(" ");
   console.log("The home component is called.")
   console.log(" ");
+  
+  setActiveMode("Home");
 
   return (
-    <div className="container m-3 w-75 overflow-auto">
+    <div 
+      id="home" 
+      className="container m-3 w-75 overflow-auto"
+    >
       <br />
       <h1>Data To Go:</h1>
       <p className="">

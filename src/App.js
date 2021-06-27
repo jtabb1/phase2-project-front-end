@@ -17,6 +17,7 @@ function App() {
 
   // eslint-disable-next-line
   const [isFromApp, setIsFromApp] = useState(true);
+  const [activeMode, setActiveMode] = useState("Home");
 
   // eslint-disable-next-line
   // const [dataSeries, setDataSeries] = useState(null)
@@ -67,6 +68,10 @@ function App() {
     });
   }, []);
 
+  const homeId = document.getElementById("home");
+  console.log("THIS IS homeId:");
+  console.log(homeId);
+
   return   (
     <div>
       <NavBar />
@@ -76,7 +81,7 @@ function App() {
         <Route exact path="/quality">
           <DataPrep
             isFromApp={isFromApp} 
-            component={"D3LineGraph"}
+            component={"D3LineGraph"} 
             dataSeriesDemand={"qualityData"} 
             qualityData={qualityData} 
             setQualityData={setQualityData}
@@ -85,6 +90,8 @@ function App() {
             data={data} 
             onSetData={onSetData} 
             setData={setData}
+            activeMode={activeMode} 
+            setActiveMode={setActiveMode}
           />
           {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
           /> */}
@@ -102,6 +109,8 @@ function App() {
             data={data} 
             onSetData={onSetData} 
             setData={setData}
+            activeMode={activeMode} 
+            setActiveMode={setActiveMode}
               />
           {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
           /> */}
@@ -119,12 +128,15 @@ function App() {
             data={data} 
             onSetData={onSetData} 
             setData={setData}
+            activeMode={activeMode} 
+            setActiveMode={setActiveMode}
               />
           {/* <Home /> */}
         </Route>
 
       </Switch>
 
+      {/* { (!homeId) ? ( */}
       <DataPrep
         isFromApp={isFromApp} 
         component={"CreateForm"} 
@@ -136,27 +148,32 @@ function App() {
         data={data} 
         onSetData={onSetData} 
         setData={setData}
-      />
-      {/* <DataPrep 
+        activeMode={activeMode} 
+        setActiveMode={setActiveMode}
+  />
+      {/* ) : (<div></div>)} could I do null here or <></> ? */}
+      { /* <DataPrep 
         isFromApp={isFromApp} 
         component={"DataList"} 
         dataSeriesDemand={null} 
         qualityData={qualityData} 
         setQualityData={setQualityData} 
         quantityData={quantityData} 
-        setQuantityData={setQuantityData}
+        setQuantityData={setQuantityData} 
         data={data} 
         onSetData={onSetData} 
-        setData={setData}
-      /> */}
+        setData={setData} 
+        activeMode={activeMode} 
+        setActiveMode={setActiveMode} 
+      /> */} 
       {/* <CreateForm 
-        data={data}
-        dataSeries={dataSeries}
-        onCreate={onCreate}
-        onSetData={onSetData}
+        data={data} 
+        dataSeries={dataSeries} 
+        onCreate={onCreate} 
+        onSetData={onSetData} 
       />
       <DataList 
-        data={data}
+        data={data} 
         dataSeries={dataSeries}
         onDelete={onDelete}
         onModify={onModify}

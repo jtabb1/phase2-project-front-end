@@ -2,7 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
 
-function D3LineGraph({ data, dataSeries, forcedRedraw }) {
+function D3LineGraph({ data, 
+    dataSeries, 
+    forcedRedraw,
+    setActiveMode
+  }) {
 
   // experiment with passing in forcedRedraw or not passing it in
 
@@ -121,6 +125,10 @@ function D3LineGraph({ data, dataSeries, forcedRedraw }) {
   // eslint-disable-next-line
   }, [forcedRedraw, data]);
   
+  // const CreateFormId = document.getElementById("CreateForm");
+  // CreateFormId.className = "";
+  setActiveMode("Data");
+
   return data !== null ?  (
     <div>
       <div className='container'>

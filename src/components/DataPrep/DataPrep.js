@@ -13,8 +13,8 @@ import DataList from '../DataList/DataList';
 // import CreateForm from "../CreateForm/CreateForm";
 // import DataList from '../DataList/DataList';
 
-const Api = 
-"https://glorify-the-supreme-god-67d35a.herokuapp.com";
+// const Api = 
+// "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 // "http://localhost:4000";
 
 function DataPrep({
@@ -27,7 +27,9 @@ function DataPrep({
   setQuantityData,
   data,
   onSetData,
-  setData
+  setData,
+  activeMode,
+  setActiveMode
 }) {
 
   const [forcedRedraw, setForcedRedraw] = useState(0);
@@ -72,7 +74,7 @@ function DataPrep({
   // console.log(" ");
   // console.log(dataSeries);
   // console.log(" ");
-  console.log(Api);
+  // console.log(Api);
   // console.log(isFromApp);
   // console.log(setQualityData);
   // console.log(setQuantityData);
@@ -89,7 +91,7 @@ function DataPrep({
   //     setQualityData(
   //       da.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts))
   //     );
-  //   });
+  //   });   
 
   //   fetch(
   //     `${Api}/${'quantityData'}`
@@ -105,7 +107,9 @@ function DataPrep({
   switch(component) {
     case "Home":
       return (
-        <Home />
+        <Home 
+          setActiveMode={setActiveMode}
+        />
       );
     case "D3LineGraph":
       return !!data ? (
@@ -113,6 +117,7 @@ function DataPrep({
           data={data}
           dataSeries={dataSeriesDemand}
           forcedRedraw={forcedRedraw}
+          setActiveMode={setActiveMode}
         />
       ) : (<p>Loading graph data ...</p>);
     case "CreateForm":
@@ -122,6 +127,7 @@ function DataPrep({
           dataSeries={dataSeriesDemand}
           onCreate={onCreate}
           setData={setData}
+          activeMode={activeMode}
         />
       );
     case "DataList":
@@ -133,6 +139,7 @@ function DataPrep({
           onCreate={onCreate}
           onModify={onModify}
           onDelete={onDelete}
+          activeMode={activeMode}
         />
       );
     default:
@@ -145,3 +152,9 @@ function DataPrep({
 }
 
 export default DataPrep;
+
+/*
+      ) : (<div></div>); // could I do null here or <></> ?
+
+
+      /* */
