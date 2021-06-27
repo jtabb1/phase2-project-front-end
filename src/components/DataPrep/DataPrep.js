@@ -1,6 +1,6 @@
 
 // import React, { useState, useEffect } from 'react';
-import React, { useState } from 'react';
+import React from 'react';
 // import { Route, Switch } from "react-router-dom";
 // import QualityGraph from "./components/QualityGraph/QualityGraph";
 // import QuantityGraph from "./components/QuantityGraph/QuantityGraph";
@@ -31,10 +31,12 @@ function DataPrep({
   onSetData,
   setData,
   activeMode,
-  setActiveMode
+  setActiveMode,
+  forcedRedraw,
+  setForcedRedraw,
+  onCreate
 }) {
 
-  const [forcedRedraw, setForcedRedraw] = useState(0);
 
   console.log(dataSeriesDemand);
   // onSetData(dataSeriesDemand);
@@ -59,10 +61,6 @@ function DataPrep({
   //   setForcedRedraw((ps) => (ps+1));
   // }
 
-  function onCreate() {
-    setForcedRedraw((ps) => (ps+1));
-  }
-
   function onModify() {
     setForcedRedraw((ps) => (ps+1));
   };
@@ -83,7 +81,9 @@ function DataPrep({
   // console.log(setQualityData);
   // console.log(setQuantityData);
   // console.log(setDataSeries);
-  console.log(" ");
+  console.log(component);
+  console.log(dataSeries);
+  console.log(forcedRedraw);
 
   // useEffect( () => {
 
@@ -132,6 +132,7 @@ function DataPrep({
             dataSeries={dataSeries}
             onCreate={onCreate}
             setData={setData}
+            setForcedRedraw={setForcedRedraw}
             activeMode={activeMode}
           />
         ) : (<p>loading data series ...</p>)

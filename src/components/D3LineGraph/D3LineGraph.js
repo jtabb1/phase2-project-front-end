@@ -40,7 +40,6 @@ function D3LineGraph({ data,
 
     //  //
     //
-    console.log('useEffect graph was called.')
     // console.log(vptW);
     if (vptW >= 1400) {
       vptW = 1320;
@@ -122,7 +121,9 @@ function D3LineGraph({ data,
       .call( d3.axisBottom(scT).tickFormat( format )
       .ticks( d3.utcMonth.every(2) ) )
     ;
-  // eslint-disable-next-line
+
+    console.log('useEffect graph was called.');
+    
   }, [forcedRedraw, data]);
   
   // const CreateFormId = document.getElementById("CreateForm");
@@ -143,3 +144,9 @@ function D3LineGraph({ data,
 }
 
 export default D3LineGraph;
+
+
+  // eslint-disable-next-line
+// //
+// //
+

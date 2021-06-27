@@ -10,6 +10,7 @@ function CreateForm({
     dataSeries, 
     onCreate, 
     setData, 
+    setForcedRedraw, 
     activeMode
   }) {
   const [formData, setFormData] = useState({
@@ -45,7 +46,13 @@ function CreateForm({
     .then((r) => r.json())
     .then((newDatum) => {
       setData(()=>([newDatum, ...data]));
-      onCreate(newDatum);
+      setForcedRedraw((ps)=>(ps+1));
+      onCreate(); // <- doesn't seem to add anything
+      let hideOrShow = "";
+      if (activeMode==="Home") {
+        hideOrShow = "hide-me";
+      }
+      window.location.reload();
     });
   }
 
@@ -53,7 +60,7 @@ function CreateForm({
   if (activeMode==="Home") {
     hideOrShow = "hide-me";
   }
-  
+
   return (
     <form 
       id="CreateForm" 

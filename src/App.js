@@ -18,6 +18,7 @@ function App() {
   // eslint-disable-next-line
   const [isFromApp, setIsFromApp] = useState(true);
   const [activeMode, setActiveMode] = useState("Home");
+  const [forcedRedraw, setForcedRedraw] = useState(0);
 
   const [dataSeries, setDataSeries] = useState("null")
   const [qualityData, setQualityData] = useState(null);
@@ -39,6 +40,9 @@ function App() {
     
   }
 
+  function onCreate() {
+    setForcedRedraw((ps) => (ps+1));
+  }
 
   useEffect( () => {
 
@@ -67,7 +71,6 @@ function App() {
     });
   }, []);
 
-  const homeId = document.getElementById("home");
   console.log("THIS IS dataSeries:");
   console.log(dataSeries);
 
@@ -93,6 +96,9 @@ function App() {
             setData={setData}
             activeMode={activeMode} 
             setActiveMode={setActiveMode}
+            forcedRedraw={forcedRedraw}
+            setForcedRedraw={setForcedRedraw}
+            onCreate={onCreate}
           />
           {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
           /> */}
@@ -114,6 +120,9 @@ function App() {
             setData={setData}
             activeMode={activeMode} 
             setActiveMode={setActiveMode}
+            forcedRedraw={forcedRedraw}
+            setForcedRedraw={setForcedRedraw}
+            onCreate={onCreate}
               />
           {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
           /> */}
@@ -135,6 +144,9 @@ function App() {
             setData={setData}
             activeMode={activeMode} 
             setActiveMode={setActiveMode}
+            forcedRedraw={forcedRedraw}
+            setForcedRedraw={setForcedRedraw}
+            onCreate={onCreate}
               />
           {/* <Home /> */}
         </Route>
@@ -157,7 +169,10 @@ function App() {
         setData={setData}
         activeMode={activeMode} 
         setActiveMode={setActiveMode}
-  />
+        forcedRedraw={forcedRedraw}
+        setForcedRedraw={setForcedRedraw}
+        onCreate={onCreate}
+/>
       {/* ) : (<div></div>)} could I do null here or <></> ? */}
       { /* <DataPrep 
         isFromApp={isFromApp} 
@@ -173,7 +188,10 @@ function App() {
         onSetData={onSetData} 
         setData={setData} 
         activeMode={activeMode} 
-        setActiveMode={setActiveMode} 
+        setActiveMode={setActiveMode}
+        forcedRedraw={forcedRedraw}
+        setForcedRedraw={setForcedRedraw}
+        onCreate={onCreate}
       /> */} 
       {/* <CreateForm 
         data={data} 
