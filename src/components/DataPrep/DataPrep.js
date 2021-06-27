@@ -21,6 +21,8 @@ function DataPrep({
   isFromApp, 
   component, 
   dataSeriesDemand, 
+  dataSeries, 
+  setDataSeries, 
   qualityData, 
   setQualityData, 
   quantityData, 
@@ -39,12 +41,14 @@ function DataPrep({
   switch(dataSeriesDemand) {
     case "qualityData":
       setData(qualityData);
+      setDataSeries( () => ("qualityData") );
       onSetData()
       // setForcedRedraw((ps) => (ps+1));
       break;
     case "quantityData":
       console.log(dataSeriesDemand);
       setData(quantityData);
+      setDataSeries( () => ("quantityData") );
       onSetData()
       // setForcedRedraw((ps) => (ps+1));
       break;
@@ -121,28 +125,32 @@ function DataPrep({
         />
       ) : (<p>Loading graph data ...</p>);
     case "CreateForm":
-      return (
-        <CreateForm 
-          data={data}
-          dataSeries={dataSeriesDemand}
-          onCreate={onCreate}
-          setData={setData}
-          activeMode={activeMode}
-        />
+      return ( 
+        (!!dataSeries) ? (
+          <CreateForm 
+            data={data}
+            dataSeries={dataSeries}
+            onCreate={onCreate}
+            setData={setData}
+            activeMode={activeMode}
+          />
+        ) : (<p>loading data series ...</p>)
       );
     case "DataList":
-      return (
-        <DataList 
-          data={data}
-          dataSeriesDemand={dataSeriesDemand}
-          onSetData={onSetData}
-          onCreate={onCreate}
-          onModify={onModify}
-          onDelete={onDelete}
-          activeMode={activeMode}
-        />
-      );
-    default:
+      return ( 
+        (!!dataSeries) ? (
+          <DataList 
+            data={data}
+            dataSeries={dataSeries}
+            onSetData={onSetData}
+            onCreate={onCreate}
+            onModify={onModify}
+            onDelete={onDelete}
+            activeMode={activeMode}
+          />
+          ) : (<p>loading data series ...</p>)
+        );
+      default:
       return (
         <p>Unknown component requested.  Please contact support @ email@biz.support.com 
           to get the information you need.

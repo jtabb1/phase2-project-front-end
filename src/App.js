@@ -19,8 +19,7 @@ function App() {
   const [isFromApp, setIsFromApp] = useState(true);
   const [activeMode, setActiveMode] = useState("Home");
 
-  // eslint-disable-next-line
-  // const [dataSeries, setDataSeries] = useState(null)
+  const [dataSeries, setDataSeries] = useState("null")
   const [qualityData, setQualityData] = useState(null);
   const [quantityData, setQuantityData] = useState(null);
   const [data, setData] = useState(null);
@@ -69,8 +68,8 @@ function App() {
   }, []);
 
   const homeId = document.getElementById("home");
-  console.log("THIS IS homeId:");
-  console.log(homeId);
+  console.log("THIS IS dataSeries:");
+  console.log(dataSeries);
 
   return   (
     <div>
@@ -83,6 +82,8 @@ function App() {
             isFromApp={isFromApp} 
             component={"D3LineGraph"} 
             dataSeriesDemand={"qualityData"} 
+            dataSeries={dataSeries} 
+            setDataSeries={setDataSeries} 
             qualityData={qualityData} 
             setQualityData={setQualityData}
             quantityData={quantityData} 
@@ -102,6 +103,8 @@ function App() {
             isFromApp={isFromApp} 
             component={"D3LineGraph"} 
             dataSeriesDemand={"quantityData"} 
+            dataSeries={dataSeries} 
+            setDataSeries={setDataSeries} 
             qualityData={qualityData} 
             setQualityData={setQualityData} 
             quantityData={quantityData} 
@@ -121,6 +124,8 @@ function App() {
             isFromApp={isFromApp} 
             component={"Home"}
             dataSeriesDemand={""} 
+            dataSeries={dataSeries} 
+            setDataSeries={setDataSeries} 
             qualityData={qualityData} 
             setQualityData={setQualityData}
             quantityData={quantityData} 
@@ -141,6 +146,8 @@ function App() {
         isFromApp={isFromApp} 
         component={"CreateForm"} 
         dataSeriesDemand={null} 
+        dataSeries={dataSeries} 
+        setDataSeries={setDataSeries} 
         qualityData={qualityData} 
         setQualityData={setQualityData} 
         quantityData={quantityData} 
@@ -156,6 +163,8 @@ function App() {
         isFromApp={isFromApp} 
         component={"DataList"} 
         dataSeriesDemand={null} 
+        dataSeries={dataSeries} 
+        setDataSeries={setDataSeries} 
         qualityData={qualityData} 
         setQualityData={setQualityData} 
         quantityData={quantityData} 
