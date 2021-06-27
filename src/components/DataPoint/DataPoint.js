@@ -43,6 +43,7 @@ function DataPoint({
       ));
       setData(()=>(updatedData));
       onModify(updDatum);
+      window.location.reload();
     });
   }
 
@@ -55,6 +56,7 @@ function DataPoint({
       const updatedData = data.filter((dm) => dm.id !== id);
       setData(()=>(updatedData));
       onDelete(id);
+      window.location.reload();
     });
   }
   

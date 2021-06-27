@@ -48,10 +48,6 @@ function CreateForm({
       setData(()=>([newDatum, ...data]));
       setForcedRedraw((ps)=>(ps+1));
       onCreate(); // <- doesn't seem to add anything
-      let hideOrShow = "";
-      if (activeMode==="Home") {
-        hideOrShow = "hide-me";
-      }
       window.location.reload();
     });
   }

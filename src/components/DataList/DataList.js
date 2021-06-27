@@ -1,8 +1,17 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import DataPoint from "../DataPoint/DataPoint";
+import './DataList.css';
 
-function DataList({ data, dataSeries, setData, onCreate, onModify, onDelete }) {
+function DataList({ 
+  data, 
+  dataSeries, 
+  setData, 
+  onCreate, 
+  onModify, 
+  onDelete,
+  activeMode
+}) {
 
     const dataRows = data.map( dm => (
         <DataPoint key={uuidv4()} 
@@ -15,8 +24,21 @@ function DataList({ data, dataSeries, setData, onCreate, onModify, onDelete }) {
         />
     ));
 
+    let hideOrShow = "";
+    if (activeMode==="Home") {
+      hideOrShow = "hide-me";
+    }
+
+    let dependentVariableName = "Tasks Per Hour";
+    if (dataSeries==="qualityData") {
+      dependentVariableName ="DPMO (Defects Per Million Opportunities)";
+    }
+  
     return (
-      <div className="container my-4">
+      <div 
+        id="DataList"
+        className={`container my-4 ${hideOrShow}`}
+      >
 
         <div className="row">
           <h3 className="text-center">Delete Or Change The Data:</h3>
@@ -32,7 +54,7 @@ function DataList({ data, dataSeries, setData, onCreate, onModify, onDelete }) {
                       Date
                     </div>
                     <div className="col">
-                      Tasks Per Hour
+                      {dependentVariableName}
                     </div>
                   </div>
                 </div>

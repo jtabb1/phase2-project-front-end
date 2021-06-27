@@ -172,9 +172,9 @@ function App() {
         forcedRedraw={forcedRedraw}
         setForcedRedraw={setForcedRedraw}
         onCreate={onCreate}
-/>
+      />
       {/* ) : (<div></div>)} could I do null here or <></> ? */}
-      { /* <DataPrep 
+      <DataPrep 
         isFromApp={isFromApp} 
         component={"DataList"} 
         dataSeriesDemand={null} 
@@ -192,7 +192,7 @@ function App() {
         forcedRedraw={forcedRedraw}
         setForcedRedraw={setForcedRedraw}
         onCreate={onCreate}
-      /> */} 
+      />
       {/* <CreateForm 
         data={data} 
         dataSeries={dataSeries} 

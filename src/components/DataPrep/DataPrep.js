@@ -139,17 +139,17 @@ function DataPrep({
       );
     case "DataList":
       return ( 
-        (!!dataSeries) ? (
+        (!!dataSeries && !!data) ? (
           <DataList 
             data={data}
             dataSeries={dataSeries}
-            onSetData={onSetData}
+            setData={setData}
             onCreate={onCreate}
             onModify={onModify}
             onDelete={onDelete}
             activeMode={activeMode}
           />
-          ) : (<p>loading data series ...</p>)
+          ) : (<p>loading the data for the table ...</p>)
         );
       default:
       return (
