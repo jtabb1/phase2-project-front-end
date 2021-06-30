@@ -41,8 +41,8 @@ function D3LineGraph({ data,
     //  //
     //
     // console.log(vptW);
-    if (vptW >= 1400) {
-      vptW = 1320;
+    if (vptW >= 1395) {
+      vptW = .95*vptW;
     } else if (vptW >= 1200) {
       vptW = 1140;
     } else if (vptW >= 992) {

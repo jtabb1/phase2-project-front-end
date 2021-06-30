@@ -17,7 +17,7 @@ import DataList from '../DataList/DataList';
 // "https://glorify-the-supreme-god-67d35a.herokuapp.com";
 // "http://localhost:4000";
 
-function DataPrep({
+function DataPrep({ 
   isFromApp, 
   component, 
   dataSeriesDemand, 
@@ -26,16 +26,16 @@ function DataPrep({
   qualityData, 
   setQualityData, 
   quantityData, 
-  setQuantityData,
-  data,
-  onSetData,
-  setData,
-  activeMode,
-  setActiveMode,
-  forcedRedraw,
-  setForcedRedraw,
-  onCreate
-}) {
+  setQuantityData, 
+  data, 
+  onSetData, 
+  setData, 
+  activeMode, 
+  setActiveMode, 
+  forcedRedraw, 
+  setForcedRedraw, 
+  onCreate 
+}) { 
 
 
   // console.log(dataSeriesDemand);    //  //  //  //  //  //  //  //  //  //

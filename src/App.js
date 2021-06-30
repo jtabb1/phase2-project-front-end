@@ -79,7 +79,8 @@ function App() {
       {/* <NavBar /> */}
 
       <header class="navbar bg-light sticky-top p-0 shadow">
-        <div class="container-fluid">
+        <div class="container">
+          <div class="row">
           <NavBar />
     
           <Switch>
@@ -157,6 +158,7 @@ function App() {
 
           </Switch>
 
+          </div>
         </div>
       </header>
 

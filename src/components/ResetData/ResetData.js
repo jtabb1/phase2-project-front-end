@@ -143,7 +143,7 @@ function ResetData({ data, dataSeries, onReset, setData,
     setNumErrors( ()=>(0) );
     onReset();
     console.log('The 3rd to last line of handleReset().');
-    // window.location.reload();
+    window.location.reload();                             // // // // //
     return false;
   }
 
