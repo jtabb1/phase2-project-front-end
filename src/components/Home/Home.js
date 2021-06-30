@@ -22,7 +22,7 @@ function Home({ setActiveMode }) {
   return (
     <div 
       id="home" 
-      className="container m-3 w-75 overflow-auto"
+      className="row"
     >
       <br />
       <h1>Data To Go:</h1>
@@ -40,3 +40,8 @@ function Home({ setActiveMode }) {
 }
 
 export default Home;
+
+/*
+      className="row p-3 w-75 overflow-auto"
+
+/* */

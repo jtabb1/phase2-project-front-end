@@ -131,13 +131,13 @@ function D3LineGraph({ data,
   setActiveMode("Data");
 
   return data !== null ?  (
-    <div>
-      <div className='container'>
+    // <div>
+    //   <div className='container'>
         <div className='row'>
           <svg ref={svgRef}></svg>
         </div>
-      </div>
-    </div>
+    //   </div>
+    // </div>
   ) : (
     <p>loading graph data... </p>
   );

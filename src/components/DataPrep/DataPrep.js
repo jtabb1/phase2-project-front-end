@@ -139,7 +139,8 @@ function DataPrep({
       );
     case "DataList":
       return ( 
-        (!!dataSeries && !!data) ? (
+        (activeMode==="Home") ? (<p></p>) : 
+        ( (!!dataSeries && !!data) ? (
           <DataList 
             data={data}
             dataSeries={dataSeries}
@@ -149,7 +150,7 @@ function DataPrep({
             onDelete={onDelete}
             activeMode={activeMode}
           />
-          ) : (<p>loading the data for the table ...</p>)
+          ) : (<p>loading the data for the table ...</p>) )
         );
       default:
       return (

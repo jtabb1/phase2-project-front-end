@@ -76,82 +76,89 @@ function App() {
 
   return   (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
 
-      <Switch>
+      <header class="navbar bg-light sticky-top p-0 shadow">
+        <div class="container-fluid">
+          <NavBar />
+    
+          <Switch>
 
-        <Route exact path="/quality">
-          <DataPrep
-            isFromApp={isFromApp} 
-            component={"D3LineGraph"} 
-            dataSeriesDemand={"qualityData"} 
-            dataSeries={dataSeries} 
-            setDataSeries={setDataSeries} 
-            qualityData={qualityData} 
-            setQualityData={setQualityData}
-            quantityData={quantityData} 
-            setQuantityData={setQuantityData}
-            data={data} 
-            onSetData={onSetData} 
-            setData={setData}
-            activeMode={activeMode} 
-            setActiveMode={setActiveMode}
-            forcedRedraw={forcedRedraw}
-            setForcedRedraw={setForcedRedraw}
-            onCreate={onCreate}
-          />
-          {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
-          /> */}
-        </Route>
-
-        <Route exact path="/quantity">
-          <DataPrep
-            isFromApp={isFromApp} 
-            component={"D3LineGraph"} 
-            dataSeriesDemand={"quantityData"} 
-            dataSeries={dataSeries} 
-            setDataSeries={setDataSeries} 
-            qualityData={qualityData} 
-            setQualityData={setQualityData} 
-            quantityData={quantityData} 
-            setQuantityData={setQuantityData} 
-            data={data} 
-            onSetData={onSetData} 
-            setData={setData}
-            activeMode={activeMode} 
-            setActiveMode={setActiveMode}
-            forcedRedraw={forcedRedraw}
-            setForcedRedraw={setForcedRedraw}
-            onCreate={onCreate}
+            <Route exact path="/quality">
+              <DataPrep
+                isFromApp={isFromApp} 
+                component={"D3LineGraph"} 
+                dataSeriesDemand={"qualityData"} 
+                dataSeries={dataSeries} 
+                setDataSeries={setDataSeries} 
+                qualityData={qualityData} 
+                setQualityData={setQualityData}
+                quantityData={quantityData} 
+                setQuantityData={setQuantityData}
+                data={data} 
+                onSetData={onSetData} 
+                setData={setData}
+                activeMode={activeMode} 
+                setActiveMode={setActiveMode}
+                forcedRedraw={forcedRedraw}
+                setForcedRedraw={setForcedRedraw}
+                onCreate={onCreate}
               />
-          {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
-          /> */}
-        </Route>
+              {/* <QualityGraph qualityData={qualityData} setQualityData={setQualityData}
+              /> */}
+            </Route>
 
-        <Route exact path="/">
-          <DataPrep
-            isFromApp={isFromApp} 
-            component={"Home"}
-            dataSeriesDemand={""} 
-            dataSeries={dataSeries} 
-            setDataSeries={setDataSeries} 
-            qualityData={qualityData} 
-            setQualityData={setQualityData}
-            quantityData={quantityData} 
-            setQuantityData={setQuantityData}
-            data={data} 
-            onSetData={onSetData} 
-            setData={setData}
-            activeMode={activeMode} 
-            setActiveMode={setActiveMode}
-            forcedRedraw={forcedRedraw}
-            setForcedRedraw={setForcedRedraw}
-            onCreate={onCreate}
-              />
-          {/* <Home /> */}
-        </Route>
+            <Route exact path="/quantity">
+              <DataPrep
+                isFromApp={isFromApp} 
+                component={"D3LineGraph"} 
+                dataSeriesDemand={"quantityData"} 
+                dataSeries={dataSeries} 
+                setDataSeries={setDataSeries} 
+                qualityData={qualityData} 
+                setQualityData={setQualityData} 
+                quantityData={quantityData} 
+                setQuantityData={setQuantityData} 
+                data={data} 
+                onSetData={onSetData} 
+                setData={setData}
+                activeMode={activeMode} 
+                setActiveMode={setActiveMode}
+                forcedRedraw={forcedRedraw}
+                setForcedRedraw={setForcedRedraw}
+                onCreate={onCreate}
+                  />
+              {/* <QuantityGraph quantityData={quantityData} setQuantityData={setQuantityData}
+              /> */}
+            </Route>
 
-      </Switch>
+            <Route exact path="/">
+              <DataPrep
+                isFromApp={isFromApp} 
+                component={"Home"}
+                dataSeriesDemand={""} 
+                dataSeries={dataSeries} 
+                setDataSeries={setDataSeries} 
+                qualityData={qualityData} 
+                setQualityData={setQualityData}
+                quantityData={quantityData} 
+                setQuantityData={setQuantityData}
+                data={data} 
+                onSetData={onSetData} 
+                setData={setData}
+                activeMode={activeMode} 
+                setActiveMode={setActiveMode}
+                forcedRedraw={forcedRedraw}
+                setForcedRedraw={setForcedRedraw}
+                onCreate={onCreate}
+                  />
+              {/* <Home /> */}
+            </Route>
+
+          </Switch>
+
+        </div>
+      </header>
 
       {/* { (!homeId) ? ( */}
       <DataPrep

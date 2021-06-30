@@ -1,6 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import DataPoint from "../DataPoint/DataPoint";
+import ResetData from "../ResetData/ResetData";
 import './DataList.css';
 
 function DataList({ 
@@ -12,6 +13,8 @@ function DataList({
   onDelete,
   activeMode
 }) {
+
+    function onReset() {}
 
     const dataRows = data.map( dm => (
         <DataPoint key={uuidv4()} 
@@ -63,6 +66,16 @@ function DataList({
           </thead>
           <tbody>{dataRows}</tbody>
         </table>
+
+        <ResetData 
+          data={data} 
+          dataSeries={dataSeries} 
+          onReset={onReset} 
+          setData={setData} 
+          onDelete={onDelete} 
+          onCreate={onCreate} 
+          onModify={onModify} 
+        />
       </div>
     );
   }
