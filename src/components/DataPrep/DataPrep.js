@@ -38,7 +38,7 @@ function DataPrep({
 }) {
 
 
-  console.log(dataSeriesDemand);
+  // console.log(dataSeriesDemand);    //  //  //  //  //  //  //  //  //  //
   // onSetData(dataSeriesDemand);
   switch(dataSeriesDemand) {
     case "qualityData":
@@ -71,8 +71,7 @@ function DataPrep({
 
   // //
   //
-  console.log(" ");
-  console.log("The data prep component is being called.")
+  // console.log(" "data prep component is being called.")  // // // //
   // console.log(" ");
   // console.log(dataSeries);
   // console.log(" ");
@@ -81,9 +80,9 @@ function DataPrep({
   // console.log(setQualityData);
   // console.log(setQuantityData);
   // console.log(setDataSeries);
-  console.log(component);
-  console.log(dataSeries);
-  console.log(forcedRedraw);
+  // console.log(component);            //  //  //  //  //  //  //      // // // // //
+  // console.log(dataSeries);           //  //  //  //  //  //  //      // // // // //
+  // console.log(forcedRedraw);         //  //  //  //  //  //  //      // // // // //
 
   // useEffect( () => {
 

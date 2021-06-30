@@ -43,6 +43,7 @@ function ResetData({ data, dataSeries, onReset, setData,
   const resetToData = allData[dataSeries];
 
   function handleReset() {
+        console.log("hi");
 
   // console.log(allData);
   // console.log(resetToData);
@@ -73,7 +74,38 @@ function ResetData({ data, dataSeries, onReset, setData,
           ts: resetToData[i].ts, 
           val: resetToData[i].val};
         postData.push(newRow);
-        postRow(newRow,0);
+        // postRow(newRow,0);
+
+        const runPost = async (newRow) => {
+          const rawResponse = await fetch(`${Api}/${dataSeries}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newRow), 
+          });
+          console.log(rawResponse);
+          const returnedRow = rawResponse.json();
+          setData(()=>([returnedRow, ...data]));
+        }
+        runPost(newRow);
+
+          // .then((r) => r.json())
+          // .then((newRow) => {
+          //   setData(()=>([newRow, ...data]));
+          // })
+          // .catch( er => {
+          //   setNumErrors( (ps)=>(ps+1) );
+          //   console.log(`The Post error: < ${numErrors}`);
+          //   console.log(er);
+          //   retries++;
+          //   if (retries < 100) {
+          //     console.log(`Retried Post ${retries} time(s) ...`)
+          //     postRow(row,retries);
+          //   } else {
+          //     return;
+          //   }
+          // });
       }
       if (idPrev === idReset) {
         skipIndices.push( (j-1) );
@@ -111,7 +143,7 @@ function ResetData({ data, dataSeries, onReset, setData,
     setNumErrors( ()=>(0) );
     onReset();
     console.log('The 3rd to last line of handleReset().');
-    window.location.reload();
+    // window.location.reload();
     return false;
   }
 
