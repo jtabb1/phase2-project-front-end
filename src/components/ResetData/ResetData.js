@@ -199,31 +199,31 @@ function ResetData({ data, dataSeries, onReset, setData,
     });
   }
 
-  function postRow(row,retries) {
-    fetch(`${Api}/${dataSeries}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(row), 
-    })
-    .then((r) => r.json())
-    .then((newRow) => {
-      setData(()=>([newRow, ...data]));
-    })
-    .catch( er => {
-      setNumErrors( (ps)=>(ps+1) );
-      console.log(`The Post error: < ${numErrors}`);
-      console.log(er);
-      retries++;
-      if (retries < 100) {
-        console.log(`Retried Post ${retries} time(s) ...`)
-        postRow(row,retries);
-      } else {
-        return;
-      }
-    });
-  }
+  // function postRow(row,retries) {
+  //   fetch(`${Api}/${dataSeries}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(row), 
+  //   })
+  //   .then((r) => r.json())
+  //   .then((newRow) => {
+  //     setData(()=>([newRow, ...data]));
+  //   })
+  //   .catch( er => {
+  //     setNumErrors( (ps)=>(ps+1) );
+  //     console.log(`The Post error: < ${numErrors}`);
+  //     console.log(er);
+  //     retries++;
+  //     if (retries < 100) {
+  //       console.log(`Retried Post ${retries} time(s) ...`)
+  //       postRow(row,retries);
+  //     } else {
+  //       return;
+  //     }
+  //   });
+  // }
 
   function getNumRows(retries) {
     fetch(

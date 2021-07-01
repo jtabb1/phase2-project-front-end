@@ -21,11 +21,11 @@ function NavBar() {
                 <li className="nav-item"><NavLink 
                   to="/" 
                   exact 
-                  className="nav-link link-dark px-2 active" 
+                  className="nav-link h4 link-dark px-2 active" 
                   aria-current="page"
                 >Home</NavLink></li>
-                <li className="nav-item"><NavLink to="/quality" exact className="nav-link link-dark px-2">Quality</NavLink></li>
-                <li className="nav-item"><NavLink to="/quantity" exact className="nav-link link-dark px-2">Quantity</NavLink></li>
+                <li className="nav-item"><NavLink to="/quality" exact className="nav-link h4 link-dark px-2">Quality</NavLink></li>
+                <li className="nav-item"><NavLink to="/quantity" exact className="nav-link h4 link-dark px-2">Quantity</NavLink></li>
 
           </ul>
         </div>
