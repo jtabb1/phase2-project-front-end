@@ -124,6 +124,7 @@ function D3LineGraph({ data,
 
     console.log('useEffect graph was called.');
     
+  // eslint-disable-next-line
   }, [forcedRedraw, data]);
   
   // const CreateFormId = document.getElementById("CreateForm");
