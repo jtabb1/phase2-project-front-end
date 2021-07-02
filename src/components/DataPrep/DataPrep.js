@@ -48,7 +48,7 @@ function DataPrep({
       // setForcedRedraw((ps) => (ps+1));
       break;
     case "quantityData":
-      console.log(dataSeriesDemand);
+      // console.log(dataSeriesDemand);
       setData(quantityData);
       setDataSeries( () => ("quantityData") );
       onSetData()

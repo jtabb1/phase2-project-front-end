@@ -10,7 +10,9 @@ function DataPoint({
   dataSeries, 
   onModify, 
   onDelete,
-  setData}) {
+  setData,
+  isDisabled
+}) {
   
   const { id, ts, val } = datum;
 
@@ -86,13 +88,14 @@ function DataPoint({
                 />
                 <button 
                   type="button" 
+                  disabled={isDisabled}
                   className="btn btn-danger btn-sm" 
                   onClick={handleDelete}
                 >
                   Delete
                 </button>
                 <button type="submit" 
-                className="btn btn-success btn-sm"
+                className="btn btn-primary btn-sm"
                 >
                   Change
                 </button>

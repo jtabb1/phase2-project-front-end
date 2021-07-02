@@ -71,8 +71,8 @@ function App() {
     });
   }, []);
 
-  console.log("THIS IS dataSeries:");
-  console.log(dataSeries);
+  // console.log("THIS IS dataSeries:");
+  // console.log(dataSeries);
 
   return   (
     <div>

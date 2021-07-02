@@ -43,13 +43,17 @@ function ResetData({ data, dataSeries, onReset, setData,
   const resetToData = allData[dataSeries];
 
   function handleReset() {
-    let prevData = [ ...data];
-    prevData.sort((a,b) => a.id - b.id);
-    
-    let patchData = [];
-    let postData = [];
-    let deleteData = [];
-    const skipIndices = [];
+        console.log("hi");
+
+  // console.log(allData);
+  // console.log(resetToData);
+  let prevData = [ ...data];
+  // console.log(prevData);
+  prevData.sort((a,b) => a.id - b.id);
+  let patchData = [];
+  let postData = [];
+  let deleteData = [];
+  const skipIndices = [];
 
     let j = 0;
     let doPostData = true;
@@ -62,14 +66,46 @@ function ResetData({ data, dataSeries, onReset, setData,
         j++;
         doPostData = false;
       }
-      // console.log(i,j,idReset,idPrev,doPostData);
-      // console.log(rowPrev);
+      console.log(i,j,idReset,idPrev,doPostData);
+      console.log(rowPrev);
       if (doPostData) {
         const newRow = {
           id: resetToData[i].id, 
           ts: resetToData[i].ts, 
           val: resetToData[i].val};
         postData.push(newRow);
+        // postRow(newRow,0);
+
+        // const runPost = async (newRow) => {
+        //   const rawResponse = await fetch(`${Api}/${dataSeries}`, {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(newRow), 
+        //   });
+        //   console.log(rawResponse);
+        //   const returnedRow = rawResponse.json();
+        //   setData(()=>([returnedRow, ...data]));
+        // }
+        // runPost(newRow);
+
+          // .then((r) => r.json())
+          // .then((newRow) => {
+          //   setData(()=>([newRow, ...data]));
+          // })
+          // .catch( er => {
+          //   setNumErrors( (ps)=>(ps+1) );
+          //   console.log(`The Post error: < ${numErrors}`);
+          //   console.log(er);
+          //   retries++;
+          //   if (retries < 100) {
+          //     console.log(`Retried Post ${retries} time(s) ...`)
+          //     postRow(row,retries);
+          //   } else {
+          //     return;
+          //   }
+          // });
       }
       if (idPrev === idReset) {
         skipIndices.push( (j-1) );
@@ -80,7 +116,7 @@ function ResetData({ data, dataSeries, onReset, setData,
             id: resetToData[i].id, 
             ts: resetToData[i].ts, 
             val: resetToData[i].val});
-          // updateRow(resetToData[i],0);
+          updateRow(resetToData[i],0);
         }
       }
     }
@@ -91,7 +127,7 @@ function ResetData({ data, dataSeries, onReset, setData,
         console.log(i, i);
         const rowPrev = prevData[i];
         deleteData.push(rowPrev);
-        // deleteRow(rowPrev,0);
+        deleteRow(rowPrev,0);
       }
     }
     console.log(prevData);
@@ -106,7 +142,7 @@ function ResetData({ data, dataSeries, onReset, setData,
     setNumErrors( ()=>(0) );
     onReset();
     console.log('The 3rd to last line of handleReset().');
-    // window.location.reload();                             // // // // //
+    window.location.reload();                             // // // // //
     return false;
   }
 
@@ -219,7 +255,7 @@ function ResetData({ data, dataSeries, onReset, setData,
         setNumErrors( ()=>(0) );
         console.log('Exiting Get Error ...')
         onReset();
-        // window.location.reload();
+        window.location.reload();
         // return false;
       }
     });

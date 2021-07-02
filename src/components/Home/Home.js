@@ -13,9 +13,9 @@ function Home({ setActiveMode }) {
 
   //  //
   //
-  console.log(" ");
-  console.log("The home component is called.")
-  console.log(" ");
+  // console.log(" ");
+  // console.log("The home component is called.")
+  // console.log(" ");
   
   setActiveMode("Home");
 
@@ -25,9 +25,9 @@ function Home({ setActiveMode }) {
       className="row"
     >
       <br />
-      <h1>Data To Go:</h1>
+      <h1>Data To Graph:</h1>
       <p className="">
-        You now have the ability to view, edit, and populate important 
+        You now have the ability to graph important 
         business metrics on the go.
       </p>
       <p>
