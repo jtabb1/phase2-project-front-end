@@ -112,3 +112,27 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
+
+.nav-link:link {
+	color: #777;
+  /* font-weight: normal; */
+}
+/* visited link grey */
+.nav-link:visited {
+	color: #777;
+  /* font-weight: normal; */
+}
+/* mouse over link blue */
+.nav-link:hover {
+	color: #0CF;
+}
+/* selected link blue */
+.nav-link:active {
+	color: #0CF;
+  font-weight: bolder;
+}
+/* !IMPORTANT ONLY ADD THIS CLASS TO YOUR ACTIVE PAGE LINK ( Color Blue )*/
+.activePage a {
+	color: #0CF !important
+}
