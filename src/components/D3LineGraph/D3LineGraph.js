@@ -37,20 +37,31 @@ function D3LineGraph({ data,
   useEffect( () => {
 
     let vptW = window.innerWidth;
-
+    let ticks_y = 5;
+    let x_unit_per_tick = 2;
     //  //
     //
     // console.log(vptW);
     if (vptW >= 1395) {
       vptW = .95*vptW;
+      ticks_y = 12;
+      x_unit_per_tick = 1;
     } else if (vptW >= 1200) {
       vptW = 1140;
+      ticks_y = 12;
+      x_unit_per_tick = 1;
     } else if (vptW >= 992) {
       vptW = 960;
+      ticks_y = 8;
+      x_unit_per_tick = 1;
     } else if (vptW >= 768) {
       vptW = 720;
+      ticks_y = 5;
+      x_unit_per_tick = 1;
     } else if (vptW >= 576) {
       vptW = 540;
+      ticks_y = 5;
+      x_unit_per_tick = 2;
     }
     // console.log(vptW);
     // console.log(data);
@@ -112,14 +123,15 @@ function D3LineGraph({ data,
     svg
       .append( "g" )
       .attr( "transform", `translate(${g01aM},0)` )
-      .call( d3.axisLeft(scY) )
+      .call( d3.axisLeft(scY) 
+      .ticks( ticks_y ) )
     ;
 
     svg
       .append( "g" )
       .attr( "transform", `translate(0,${g01aH-g01aM})` )        
       .call( d3.axisBottom(scT).tickFormat( format )
-      .ticks( d3.utcMonth.every(2) ) )
+      .ticks( d3.utcMonth.every( x_unit_per_tick ) ) )                                /// Make Responsive
     ;
 
     console.log('useEffect graph was called.');
@@ -133,11 +145,13 @@ function D3LineGraph({ data,
 
   return data !== null ?  (
     // <div>
-    //   <div className='container'>
+      // <div className='container'>
         <div className='row'>
-          <svg ref={svgRef}></svg>
+          {/* <div className='col'> */}
+            <svg ref={svgRef}></svg>
+          {/* </div> */}
         </div>
-    //   </div>
+      // </div>
     // </div>
   ) : (
     <p>loading graph data... </p>

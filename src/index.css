@@ -133,6 +133,6 @@ body {
   font-weight: bolder;
 }
 /* !IMPORTANT ONLY ADD THIS CLASS TO YOUR ACTIVE PAGE LINK ( Color Blue )*/
-.activePage a {
+.activePage .nav-link {
 	color: #0CF !important
 }
