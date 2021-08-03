@@ -67,6 +67,7 @@ function D3LineGraph({ data,
       ticks_y = 5;
       x_unit_per_tick = 1;
       vptWOffset = 70;
+      h_scale = 2.3;
     } else if (vptW >= 576) {
       vptW = 575.98;
       ticks_y = 5;
@@ -76,7 +77,7 @@ function D3LineGraph({ data,
     // console.log(vptW);
     // console.log(data);
     //
-    //  //
+    //
 
     let xVptWOffset = 0;
     let g01aW = vptW - vptWOffset - xVptWOffset; //+g01aWidthScaling * vptW;
