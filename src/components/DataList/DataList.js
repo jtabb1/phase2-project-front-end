@@ -17,7 +17,7 @@ function DataList({
     // function onReset() {}
 
     const isDisabled = data.length<2 ? true : false;
-    console.log(isDisabled);
+    // console.log(isDisabled);
 
     const dataRows = data.map( dm => (
         <DataPoint key={uuidv4()} 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
 
@@ -39,38 +39,45 @@ function D3LineGraph({ data,
     let vptW = window.innerWidth;
     let ticks_y = 5;
     let x_unit_per_tick = 2;
+    let vptWOffset = 40;
     //  //
     //
     // console.log(vptW);
-    if (vptW >= 1395) {
-      vptW = .95*vptW;
+    if (vptW >= 1400) {
+      vptW = 1399.98;
       ticks_y = 12;
       x_unit_per_tick = 1;
+      vptWOffset = 103;
     } else if (vptW >= 1200) {
-      vptW = 1140;
+      vptW = 1199.98;
       ticks_y = 12;
       x_unit_per_tick = 1;
+      vptWOffset = 83;
     } else if (vptW >= 992) {
-      vptW = 960;
+      vptW = 991.98;
       ticks_y = 8;
       x_unit_per_tick = 1;
+      vptWOffset = 55;
     } else if (vptW >= 768) {
-      vptW = 720;
+      vptW = 767.98;
       ticks_y = 5;
       x_unit_per_tick = 1;
+      vptWOffset = 70;
     } else if (vptW >= 576) {
-      vptW = 540;
+      vptW = 575.98;
       ticks_y = 5;
       x_unit_per_tick = 2;
+      vptWOffset = 60;
     }
     // console.log(vptW);
     // console.log(data);
     //
     //  //
 
-    let g01aW = +g01aWidthScaling * vptW;
+    let xVptWOffset = 0;
+    let g01aW = vptW - vptWOffset - xVptWOffset; //+g01aWidthScaling * vptW;
     // let g01aH = +g01aHeightScaling * vptH;
-    let g01aH = g01aW / 1.61;
+    let g01aH = g01aW / 2.3; //1.61;
 
     data.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts));
 
@@ -87,7 +94,7 @@ function D3LineGraph({ data,
     );
 
     var scT = d3.scaleUtc()
-      .domain( d3.extent( dataReg, d=>d.ts ) ).nice()  
+      .domain( d3.extent( dataReg, d=>d.ts ) ) //.nice()  
       .range( [ g01aM, g01aW-g01aM ] );
     var scY = d3.scaleLinear()
       .domain( [0, 1.3*maxVal] ).range( [ g01aH-g01aM, g01aM ] );
@@ -137,7 +144,7 @@ function D3LineGraph({ data,
     console.log('useEffect graph was called.');
     
   // eslint-disable-next-line
-  }, [forcedRedraw, data]);
+  }, [forcedRedraw, data, window.innerWidth]);
   
   // const CreateFormId = document.getElementById("CreateForm");
   // CreateFormId.className = "";
@@ -145,13 +152,13 @@ function D3LineGraph({ data,
 
   return data !== null ?  (
     // <div>
-      // <div className='container'>
+      <div className='container'>
         <div className='row'>
-          {/* <div className='col'> */}
+          <div className='col'>
             <svg ref={svgRef}></svg>
-          {/* </div> */}
+          </div>
         </div>
-      // </div>
+      </div>
     // </div>
   ) : (
     <p>loading graph data... </p>
