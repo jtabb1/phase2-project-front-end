@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { select } from "d3";
 import * as d3 from "d3";
 
@@ -23,8 +23,6 @@ function D3LineGraph({ data,
       strokeColor = "blue";
   }
 
-  let g01aWidthScaling = "0.95";
-  // let g01aHeightScaling = "0.4";
   let g01aM = 40;
   
   const svgRef = useRef();
@@ -99,7 +97,7 @@ function D3LineGraph({ data,
     );
 
     var scT = d3.scaleUtc()
-      .domain( d3.extent( dataReg, d=>d.ts ) ) .nice()  
+      .domain( d3.extent( dataReg, d=>d.ts ) ).nice()  
       .range( [ g01aM, g01aW-g01aM ] );
     var scY = d3.scaleLinear()
       .domain( [0, 1.3*maxVal] ).range( [ g01aH-g01aM, g01aM ] );
