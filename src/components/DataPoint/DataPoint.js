@@ -86,6 +86,8 @@ function DataPoint({
                   name="val"
                   defaultValue={val}
                 />
+
+                <div>
                 <button 
                   type="button" 
                   disabled={isDisabled}
@@ -99,6 +101,8 @@ function DataPoint({
                 >
                   Change
                 </button>
+                </div>
+
               </form>
             </div>
         </div>

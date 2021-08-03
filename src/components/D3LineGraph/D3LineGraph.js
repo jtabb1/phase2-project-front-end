@@ -40,6 +40,7 @@ function D3LineGraph({ data,
     let ticks_y = 5;
     let x_unit_per_tick = 2;
     let vptWOffset = 40;
+    let h_scale = 1.61
     //  //
     //
     // console.log(vptW);
@@ -48,16 +49,19 @@ function D3LineGraph({ data,
       ticks_y = 12;
       x_unit_per_tick = 1;
       vptWOffset = 103;
+      h_scale = 2.3;
     } else if (vptW >= 1200) {
       vptW = 1199.98;
       ticks_y = 12;
       x_unit_per_tick = 1;
       vptWOffset = 83;
+      h_scale = 2.3;
     } else if (vptW >= 992) {
       vptW = 991.98;
       ticks_y = 8;
       x_unit_per_tick = 1;
       vptWOffset = 55;
+      h_scale = 2.3;
     } else if (vptW >= 768) {
       vptW = 767.98;
       ticks_y = 5;
@@ -77,7 +81,7 @@ function D3LineGraph({ data,
     let xVptWOffset = 0;
     let g01aW = vptW - vptWOffset - xVptWOffset; //+g01aWidthScaling * vptW;
     // let g01aH = +g01aHeightScaling * vptH;
-    let g01aH = g01aW / 2.3; //1.61;
+    let g01aH = g01aW / h_scale; //1.61;
 
     data.sort((a,b) => Date.parse(b.ts) - Date.parse(a.ts));
 
@@ -94,7 +98,7 @@ function D3LineGraph({ data,
     );
 
     var scT = d3.scaleUtc()
-      .domain( d3.extent( dataReg, d=>d.ts ) ) //.nice()  
+      .domain( d3.extent( dataReg, d=>d.ts ) ) .nice()  
       .range( [ g01aM, g01aW-g01aM ] );
     var scY = d3.scaleLinear()
       .domain( [0, 1.3*maxVal] ).range( [ g01aH-g01aM, g01aM ] );
